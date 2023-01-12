@@ -8,8 +8,8 @@ import './Component.css';
 const Nav = () => {
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color='inherit'>
+    // <Box sx={{ flexGrow: 1 }}>
+    //   <AppBar position="static" color='inherit'>
         <Toolbar>
           <Link to="/">
             <img className="nav_logo" src = {Logo} alt = "logo" />
@@ -19,8 +19,8 @@ const Nav = () => {
             <img className="kakao_login" src = {login} alt = "kakao login" />
           </a>
         </Toolbar>
-      </AppBar>
-    </Box>
+    //   </AppBar>
+    // </Box>
   )
 }
 
