@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const port = 5000;
 
-app.use(cors());
+app.use(express.json(), cors(), cookieParser());
 
 app.listen(port, () => {
   console.log(port, "서버실행");

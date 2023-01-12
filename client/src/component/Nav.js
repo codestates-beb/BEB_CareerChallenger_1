@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Box, AppBar, Toolbar } from "@mui/material";
 import Logo from "./logo.png";
 import login from "./kakao_login_medium.png";
+import axios from "axios";
 import "./Component.css";
 
 const loginHandler = () => {
