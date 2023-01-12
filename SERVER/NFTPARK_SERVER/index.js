@@ -4,7 +4,11 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const port = 5000;
 
-app.use(express.json(), cors(), cookieParser());
+app.use(
+  express.json(),
+  cors({ origin: true, credentials: true }),
+  cookieParser()
+);
 
 app.listen(port, () => {
   console.log(port, "서버실행");

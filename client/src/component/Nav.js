@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Box, AppBar, Toolbar } from "@mui/material";
 import Logo from "./logo.png";
 import login from "./kakao_login_medium.png";
+import { UseContext } from "../User/UserContextProvider";
 import axios from "axios";
 import "./Component.css";
 
@@ -12,6 +13,27 @@ const loginHandler = () => {
 };
 
 const Nav = () => {
+  const { user, setUsers } = useContext(UseContext);
+  console.log(user);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("login");
+    if (name) {
+      let date = new Date();
+      date.setMinutes(date.getMinutes() + 10);
+      axios
+        .get("http://localhost:5000/user/userInfo", { withCredentials: true })
+        .then((res) => {
+          localStorage.setItem("expiresIn", date);
+          setUsers(res.data);
+        })
+        .catch((err) => {
+          console.log("쿠키가없는데 시도");
+        });
+    }
+  }, []);
+
   return (
     // <Box sx={{ flexGrow: 1 }}>
     //   <AppBar position="static" color='inherit'>

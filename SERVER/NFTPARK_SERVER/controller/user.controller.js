@@ -9,6 +9,15 @@ function jwtCreate(payload, expiresIn) {
   return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: expiresIn });
 }
 
+exports.userInfo = (req, res) => {
+  const userData = new KakaoInfo(
+    req.userInfo.id,
+    req.userInfo.nickname,
+    req.userInfo.profile_image
+  );
+  return res.status(200).json(userData.json);
+};
+
 exports.KakaoLogin = async (req, res) => {
   const code = req.query.code;
   try {
@@ -47,12 +56,12 @@ exports.KakaoLogin = async (req, res) => {
       if (!data) {
         db.user.create(userInfo).then((data) => {
           res.cookie("token", jwtToken, { maxAge: 600000, httpOnly: true });
-          return res.redirect("http://localhost:3000");
+          return res.redirect("http://localhost:3000?login=ok");
         });
       }
       if (data) {
         res.cookie("token", jwtToken, { maxAge: 600000, httpOnly: true });
-        return res.redirect("http://localhost:3000");
+        return res.redirect("http://localhost:3000?login=ok");
       }
     });
   } catch (err) {
@@ -72,6 +81,7 @@ exports.authMiddleware = async (req, res, next) => {
       return res.status(419).send("토큰 만료");
     }
     if (err.name === "JsonWebTokenError") {
+      res.clearCookie("token");
       return res.status(401).send("유효하지 않은 토큰");
     }
   }
