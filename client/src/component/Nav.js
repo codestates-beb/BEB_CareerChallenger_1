@@ -12,19 +12,19 @@ const loginHandler = () => {
 
 const Nav = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="inherit">
-        <Toolbar>
-          <Link to="/">
-            <img className="nav_logo" src={Logo} alt="logo" />
-          </Link>
-          <Box sx={{ flexGrow: 1 }} />
-          <button type="button" onClick={loginHandler}>
-            <img className="kakao_login" src={login} alt="kakao login" />
-          </button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    // <Box sx={{ flexGrow: 1 }}>
+    //   <AppBar position="static" color='inherit'>
+    <Toolbar>
+      <Link to="/">
+        <img className="nav_logo" src={Logo} alt="logo" />
+      </Link>
+      <Box sx={{ flexGrow: 1 }} />
+      <button type="button" onClick={loginHandler}>
+        <img className="kakao_login" src={login} alt="kakao login" />
+      </button>
+    </Toolbar>
+    //   </AppBar>
+    // </Box>
   );
 };
 

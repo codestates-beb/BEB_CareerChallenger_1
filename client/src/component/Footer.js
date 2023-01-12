@@ -5,7 +5,7 @@ import './Component.css';
 const Footer = () => {
   return (
     <div className='footer_container'>
-      <p>&copy; 2023 NFTPARK all rights reserved.</p>
+      <p>Copyright &copy; 2023 NFTPARK All Rights Reserved.</p>
     </div>
   )
 }
