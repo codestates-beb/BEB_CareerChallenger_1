@@ -13,6 +13,7 @@ const loginHandler = () => {
 };
 
 const Nav = () => {
+<<<<<<< HEAD
   const { user, setUsers } = useContext(UseContext);
   console.log(user);
 
@@ -50,5 +51,25 @@ const Nav = () => {
     // </Box>
   );
 };
+=======
+  return (
+    <Toolbar>
+      <Link to="/">
+        <img className="nav_logo" src = {Logo} alt = "logo" />
+      </Link>
+      <Box sx={{ flexGrow: 1 }} />
+      <Link to="/detail">
+        <button className='booking_btn'>DETAIL</button>
+      </Link>
+      <Link to="/mypage">
+        <button className='booking_btn'>MYPAGE</button>
+      </Link>
+      <a href="">
+        <img className="kakao_login" src = {login} alt = "kakao login" />
+      </a>
+    </Toolbar>
+  )
+}
+>>>>>>> 9a4ddd21efa3be38896c82749a2844fbef5fea34
 
 export default Nav;

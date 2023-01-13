@@ -9,6 +9,8 @@ import idle from './banner/i-dle.jpeg';
 import younha from './banner/younha.jpeg';
 
 import './Main.css';
+import { ConcertCard } from './component/ConcertCard';
+import { Toolbar } from '@mui/material';
 
 export const Main = () => {
   const bannerSettings = {
@@ -49,7 +51,13 @@ export const Main = () => {
       </Slider>
       <div className='line'></div>
       <div className='concert_container'>
-
+        <div className='main_title'>
+          <Toolbar>
+            <h1>관심집중 핫 이슈 콘서트</h1>
+            <button className='more_btn'>MORE CONCERT</button>
+          </Toolbar>
+        </div>
+        <ConcertCard />
       </div>
     </main>
   )

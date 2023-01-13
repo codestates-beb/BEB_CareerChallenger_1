@@ -1,7 +1,7 @@
 .line {
 	border-top: 5px solid #222;
 	width: 1200px;
-	margin: 100px auto;
+	margin: 80px auto 20px;
 	display: block;
 }
 
@@ -44,4 +44,25 @@
 	cursor: pointer;
 	margin: auto;
 	display: block;
+}
+
+.more_btn {
+	background: none;
+	border: 1px solid;
+	padding: 10px 15px;
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+.main_title {
+	width: 1250px;
+	margin : auto;
+}
+
+/* ConcertCard css */
+.concercard_container {
+	display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 200px));
+  column-gap: 30px;
+  justify-content: center;
 }
