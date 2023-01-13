@@ -1,0 +1,38 @@
+.detail_container {
+  width: 100%;
+  min-height: 1000px;
+}
+
+.detail_info {
+  width: 70%;
+  float: left;
+}
+
+.detail_booking {
+  width: 30%;
+  float: right;
+}
+
+.detail_img {
+  width: 50%;
+  float: left;
+}
+
+.detail_text {
+  width: 50%;
+  float: right;
+}
+
+.text_info {
+  padding: 10px;
+}
+
+/* BookingInfo css */
+.booking_btn {
+  background: none;
+	border: 1px solid;
+	padding: 10px 50px;
+	cursor: pointer;
+  margin: 10px auto 20px auto;
+	display: block;
+}

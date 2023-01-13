@@ -3,31 +3,41 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import './Mypage.css';
 
 export const Mypage = () => {
-
   return (
     <mypage>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableContainer component={Paper} sx={{ width: 700 }}>
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>예매일</TableCell>
-              <TableCell>공연명</TableCell>
-              <TableCell>관람일</TableCell>
-              <TableCell>매수</TableCell>
-              <TableCell>상태</TableCell>
+              <TableCell>상품명</TableCell>
+              <TableCell>이용일 / 매수</TableCell>
+              <TableCell>QR</TableCell>
+              <TableCell>취소</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-              <TableRow
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">sfd
-                </TableCell>
-                <TableCell>dsf</TableCell>
-                <TableCell>asdf</TableCell>
-                <TableCell>sdf</TableCell>
-                <TableCell>sadf</TableCell>
-              </TableRow>
+            <TableRow>
+              <TableCell>2023.01.12</TableCell>
+              <TableCell>BlackPink concert</TableCell>
+              <TableCell>2023.01.27 / 2</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>2023.01.15</TableCell>
+              <TableCell>BTS concert</TableCell>
+              <TableCell>2023.01.30 / 1</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>2023.01.19</TableCell>
+              <TableCell>Younha concert</TableCell>
+              <TableCell>2023.02.05 / 1</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
