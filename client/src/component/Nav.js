@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Box, AppBar, Toolbar } from "@mui/material";
+import { Box, Toolbar, Avatar } from "@mui/material";
 import Logo from "./logo.png";
 import login from "./kakao_login_medium.png";
 import { UseContext } from "../User/UserContextProvider";
@@ -50,21 +50,49 @@ const Nav = () => {
     }
   }, []);
 
+  const LoggedIn = () => {
+    return (
+      <>
+        <Link to="/mypage">
+          <button className='nav_btn'>예약확인/취소</button>
+        </Link>
+        <Link to="/mypage">
+          <Avatar
+          alt="kakao img"
+          src="/static/images/avatar/1.jpg"
+          sx={{ width: 56, height: 56 }}
+          />
+        </Link>
+      </>
+    )
+  }
+
+  const Logout = () => {
+    return (
+      <>
+        <Link to="/detail">
+          <button className='nav_btn'>DETAIL</button>
+        </Link>
+        <Link to="/mypage">
+          <button className='nav_btn'>MYPAGE</button>
+        </Link>
+        <Link to="/marketplace">
+          <button className='nav_btn'>MARKETPLACE</button>
+        </Link>
+        <button className="kakao_btn" type="button" onClick={loginHandler}>
+          <img className="kakao_login" src={login} alt="kakao login" />
+        </button>
+      </>
+    )
+  }
+
   return (
     <Toolbar>
       <Link to="/">
         <img className="nav_logo" src={Logo} alt="logo" />
       </Link>
       <Box sx={{ flexGrow: 1 }} />
-      <Link to="/detail">
-        <button className="booking_btn">DETAIL</button>
-      </Link>
-      <Link to="/mypage">
-        <button className="booking_btn">MYPAGE</button>
-      </Link>
-      <button type="button" onClick={loginHandler}>
-        <img className="kakao_login" src={login} alt="kakao login" />
-      </button>
+      {user ? <Logout /> : <LoggedIn /> }
     </Toolbar>
   );
 };
