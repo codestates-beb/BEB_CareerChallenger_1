@@ -1,0 +1,19 @@
+/* Allconcert css */
+.allcon_img {
+  height: 140px;
+}
+
+/* Onsale css */
+.sale_price {
+  background: none;
+	border-top: 2px solid rgb(167, 164, 164);
+  margin-top: 20px;
+	display: block;
+  padding: 10px;
+  width: 130px;
+}
+
+.price_icon {
+  width: 25%;
+  float: left;
+}

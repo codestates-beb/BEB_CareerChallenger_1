@@ -1,1 +1,36 @@
 /* Nav css */
+.kakao_btn {
+  border:none;
+  background-color: transparent; 
+}
+
+.nav_btn {
+  background: none;
+	border: 1px solid;
+	padding: 10px 50px;
+	cursor: pointer;
+  margin: 10px auto 20px auto;
+	display: block;
+}
+
+/* Emptypage css */
+.emptypage_container {
+  min-height: 1000px;
+}
+
+.emptymessage {
+  width: 300px; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.emptypage_btn {
+  background: none;
+	border: 1px solid;
+	padding: 10px 50px;
+	cursor: pointer;
+  margin: 30px auto 20px auto;
+	display: block;
+}
