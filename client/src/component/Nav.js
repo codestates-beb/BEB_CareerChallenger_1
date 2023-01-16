@@ -15,7 +15,6 @@ const loginHandler = () => {
 const Nav = () => {
   const { user, setUsers } = useContext(UseContext);
   console.log(user);
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const name = params.get("login");
@@ -27,6 +26,23 @@ const Nav = () => {
         .then((res) => {
           localStorage.setItem("expiresIn", date);
           setUsers(res.data);
+          setTimeout(() => {
+            setUsers();
+          }, 600000);
+        })
+        .catch((err) => {
+          console.log("쿠키가없는데 시도");
+        });
+    }
+    const time = new Date();
+    if (!user.id && time < localStorage.getItem("expiresIn")) {
+      axios
+        .get("http://localhost:5000/user/userInfo", { withCredentials: true })
+        .then((res) => {
+          setUsers(res.data);
+          setTimeout(() => {
+            setUsers();
+          }, time - localStorage.getItem("expiresIn"));
         })
         .catch((err) => {
           console.log("쿠키가없는데 시도");
@@ -63,7 +79,7 @@ const Nav = () => {
         <Link to="/marketplace">
           <button className='nav_btn'>MARKETPLACE</button>
         </Link>
-        <button className="kakao_btn" onClick={loginHandler}>
+        <button className="kakao_btn" type="button" onClick={loginHandler}>
           <img className="kakao_login" src={login} alt="kakao login" />
         </button>
       </>
