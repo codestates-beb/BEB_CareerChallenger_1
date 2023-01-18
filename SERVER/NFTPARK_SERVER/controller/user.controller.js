@@ -69,20 +69,3 @@ exports.KakaoLogin = async (req, res) => {
     return res.redirect("http://localhost:3000/error");
   }
 };
-
-exports.authMiddleware = async (req, res, next) => {
-  const token = req.cookies.token;
-  try {
-    req.userInfo = jwt.verify(token, process.env.SECRET_KEY);
-    return next();
-  } catch (err) {
-    if (err.name === "TokenExpiredError") {
-      res.clearCookie("token");
-      return res.status(419).send("토큰 만료");
-    }
-    if (err.name === "JsonWebTokenError") {
-      res.clearCookie("token");
-      return res.status(401).send("유효하지 않은 토큰");
-    }
-  }
-};
