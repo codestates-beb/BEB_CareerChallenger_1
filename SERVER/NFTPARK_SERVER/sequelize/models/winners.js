@@ -1,27 +1,29 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('winners', {
     id: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nickname: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    profile_image: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
     address: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false,
+      defaultValue: ""
+    },
+    title: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      defaultValue: ""
+    },
+    rank: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      defaultValue: ""
     }
   }, {
     sequelize,
-    tableName: 'user',
-    hasTrigger: true,
+    tableName: 'winners',
     timestamps: false,
     indexes: [
       {
