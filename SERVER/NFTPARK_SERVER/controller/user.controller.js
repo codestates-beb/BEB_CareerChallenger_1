@@ -1,6 +1,6 @@
 const { db, sequelize } = require("../sequelize/models/index.js");
 const { Op } = require("sequelize");
-const { KakaoInfo } = require("../data/kakaoInfo");
+const { KakaoInfo, KakaoMessage } = require("../data/kakao");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -51,6 +51,9 @@ exports.KakaoLogin = async (req, res) => {
       authInfo.data.properties.nickname,
       authInfo.data.properties.profile_image
     );
+
+    await axios(KakaoMessage(authToken.data.access_token)); //카톡 메세지
+
     db.user.findOne({ where: userInfo.id }).then((data) => {
       const jwtToken = jwtCreate(userInfo.json, "10m");
       if (!data) {
