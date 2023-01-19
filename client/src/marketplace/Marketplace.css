@@ -4,16 +4,16 @@
 }
 
 /* Onsale css */
-.sale_price {
-  background: none;
-	border-top: 2px solid rgb(167, 164, 164);
-  margin-top: 20px;
-	display: block;
-  padding: 10px;
-  width: 130px;
-}
-
 .price_icon {
   width: 25%;
   float: left;
+}
+
+/* MarketplaceCard css */
+.marketplace_card_line {
+  background: none;
+	border-top: 2px dotted rgb(167, 164, 164);
+  margin-top: 20px;
+	display: block;
+  width: 210px;
 }

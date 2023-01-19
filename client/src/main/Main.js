@@ -11,6 +11,7 @@ import younha from './banner/younha.jpeg';
 import './Main.css';
 import { ConcertCard } from './component/ConcertCard';
 import { Toolbar } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const Main = () => {
   const bannerSettings = {
@@ -50,15 +51,17 @@ export const Main = () => {
         </div>
       </Slider>
       <div className='line'></div>
-      <div className='concert_container'>
-        <div className='main_title'>
-          <Toolbar>
-            <h1>관심집중 핫 이슈 콘서트</h1>
-            <button className='more_btn'>MORE CONCERT</button>
-          </Toolbar>
-        </div>
-        <ConcertCard />
-      </div>
+      <Toolbar>
+        <h1>UPCOMING</h1>
+        <Link to="/marketplace"><button className='more_btn'>MORE UPCOMING</button></Link>
+      </Toolbar>
+      <ConcertCard />
+      <div className='line'></div>
+      <Toolbar>
+        <h1>HOTISSUE</h1>
+        <Link to="/marketplace/allconcert"><button className='more_btn'>MORE HOTISSUE</button></Link>
+      </Toolbar>
+      <ConcertCard />
     </main>
   )
 }

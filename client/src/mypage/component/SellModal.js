@@ -21,7 +21,7 @@ export const SellModal = () => {
       >
         <Card className='mypage_modal' sx={{ maxWidth: 500 }}>
           <CardContent>
-            <div className='modal_line'></div>
+            <div className='modal_line'/>
             <h2 className='modal_title'>내 티켓 판매하기</h2>
             <div className='modal_imgtext'>
               <div className='modal_img'>
@@ -36,8 +36,8 @@ export const SellModal = () => {
                 <Typography>관람일시 | 2023.01.27 14:00 1회</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
                 <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
-                <Typography sx={{ mt: 1 }}>매수 | 2</Typography>
-                <Typography sx={{ mt: 1 }}>구매 가격 | 130,000원</Typography>
+                <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
+                <Typography sx={{ mt: 1 }}>구매 금액 | 130,000원</Typography>
               </div>
               <TextField
                 id="modal_price"
@@ -48,13 +48,13 @@ export const SellModal = () => {
                   endAdornment: <InputAdornment position="end">원</InputAdornment>,
                 }}
               />
-              <div className='modal_line2'></div>
+              <div className='modal_line2'/>
               <ErrorOutlineIcon color="error"/>
               <Typography sx={{ mt: 1 }}>- 희망 가격은 구매 가격을 초과할 수 없습니다.</Typography>
               <Typography sx={{ mt: 1 }}>- 판매 완료된 후에는 취소할 수 없습니다.</Typography>
               <Typography sx={{ mt: 1 }}>- 상품을 올리기 전, 반드시 주의 사항을 확인하시기 바랍니다.</Typography>
             </div>
-            <div className='modal_line'></div>
+            <div className='modal_line'/>
             <button className='modal_btn'>완 료</button>
           </CardContent >
         </Card>

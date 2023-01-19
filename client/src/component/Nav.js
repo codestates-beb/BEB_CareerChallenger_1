@@ -15,6 +15,7 @@ const loginHandler = () => {
 const Nav = () => {
   const { user, setUsers } = useContext(UseContext);
   console.log(user);
+  console.log(user.id)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const name = params.get("login");
@@ -59,7 +60,7 @@ const Nav = () => {
         <Link to="/mypage">
           <Avatar
           alt="kakao img"
-          src="/static/images/avatar/1.jpg"
+          src={user.profile_image}
           sx={{ width: 56, height: 56 }}
           />
         </Link>
@@ -70,6 +71,9 @@ const Nav = () => {
   const Logout = () => {
     return (
       <>
+        {/* <Link to="/fundingdetail">
+          <button className='nav_btn'>FUNDING DETAIL</button>
+        </Link>
         <Link to="/detail">
           <button className='nav_btn'>DETAIL</button>
         </Link>
@@ -78,7 +82,7 @@ const Nav = () => {
         </Link>
         <Link to="/marketplace">
           <button className='nav_btn'>MARKETPLACE</button>
-        </Link>
+        </Link> */}
         <button className="kakao_btn" type="button" onClick={loginHandler}>
           <img className="kakao_login" src={login} alt="kakao login" />
         </button>
@@ -91,8 +95,19 @@ const Nav = () => {
       <Link to="/">
         <img className="nav_logo" src={Logo} alt="logo" />
       </Link>
+
+      <Link to="/upcomingdetail">
+        <button className='nav_btn'>UPCOMING DETAIL</button>
+      </Link>
+      <Link to="/mypage">
+        <button className='nav_btn'>MYPAGE</button>
+      </Link>
+      <Link to="/marketplace">
+        <button className='nav_btn'>MARKETPLACE</button>
+      </Link>
+
       <Box sx={{ flexGrow: 1 }} />
-      {user ? <Logout /> : <LoggedIn /> }
+      {user.id ? <LoggedIn /> : <Logout /> }
     </Toolbar>
   );
 };
