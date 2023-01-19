@@ -1,14 +1,16 @@
 class KakaoInfo {
-  constructor(id, nickname, profile_image) {
+  constructor(id, nickname, profile_image, address) {
     this.id = id;
     this.nickname = nickname;
     this.profile_image = profile_image;
+    this.address = address;
   }
   get json() {
     const data = {
       id: this.id,
       nickname: this.nickname,
       profile_image: this.profile_image,
+      address: this.address,
     };
     return data;
   }

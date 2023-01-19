@@ -4,6 +4,7 @@ export const UseContext = createContext({
     id: "",
     nickname: "",
     profile_image: "",
+    address: "",
   },
   setUsers: () => {},
 });
@@ -13,6 +14,7 @@ const UserContextProvider = ({ children }) => {
     id: "",
     nickname: "",
     profile_image: "",
+    address: "",
   });
 
   const setUserHandler = (data) => setUser(data);
