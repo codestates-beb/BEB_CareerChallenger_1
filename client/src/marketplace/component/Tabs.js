@@ -7,6 +7,9 @@ export const Tabs = () => {
   return (
     <>
       <Toolbar>
+        <Link to="/marketplace/upcoming">
+          <button className='nav_btn'>UPCOMING</button>
+        </Link>
         <Link to="/marketplace/allconcert">
           <button className='nav_btn'>ALL</button>
         </Link>
