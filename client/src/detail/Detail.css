@@ -1,16 +1,12 @@
+/* Upcomingdetail css */
 .detail_container {
   width: 100%;
   min-height: 1000px;
 }
 
 .detail_info {
-  width: 70%;
+  width: 50%;
   float: left;
-}
-
-.detail_booking {
-  width: 30%;
-  float: right;
 }
 
 .detail_img {
@@ -27,12 +23,26 @@
   padding: 10px;
 }
 
-/* BookingInfo css */
-.booking_btn {
-  background: none;
+.entry_btn {
+  color: white;
+  background-color: rgb(176, 36, 57);
 	border: 1px solid;
-	padding: 10px 50px;
+	padding: 17px 70px;
 	cursor: pointer;
-  margin: 10px auto 20px auto;
+  margin: 0 20px;
+  font-weight: 800;
+  font-size: large;
+}
+
+.detail_line {
+  border-top: 1px dotted rgb(201, 195, 195);
+	margin: 10px auto 10px;
 	display: block;
 }
+
+.separate_line {
+  border-top: 3px dotted rgb(201, 195, 195);
+	margin: 20px auto 20px;
+	display: block;
+}
+

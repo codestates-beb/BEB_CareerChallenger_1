@@ -49,14 +49,9 @@
 .more_btn {
 	background: none;
 	border: 1px solid;
-	padding: 10px 15px;
+	padding: 10px 30px;
 	cursor: pointer;
 	margin-left: 20px;
-}
-
-.main_title {
-	width: 1250px;
-	margin : auto;
 }
 
 /* ConcertCard css */
