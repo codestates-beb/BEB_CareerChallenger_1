@@ -51,7 +51,7 @@ exports.KakaoLogin = async (req, res) => {
     );
 
     const data = await db.user.findOne({ where: authInfo.data.id });
-    await axios(KakaoMessage(authToken.data.access_token)); //카톡 메세지
+    // await axios(KakaoMessage(authToken.data.access_token)); //카톡 메세지
     if (!data) {
       const web3Data = await web3.eth.accounts.create();
       await db.user.create({
