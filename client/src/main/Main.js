@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,9 +11,24 @@ import younha from './banner/younha.jpeg';
 import './Main.css';
 import { ConcertCard } from './component/ConcertCard';
 import { Toolbar } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from "axios";
 
 export const Main = () => {
+  const [concertinfo, setConcertinfo] = useState([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:5000/nftpark/concertInfo', {
+      withCredentials: true
+    }).then((res) => {
+      setConcertinfo(res.data.data);
+      console.log(res.data.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
+
   const bannerSettings = {
     dots: true,
     infinite: true,
@@ -55,13 +70,13 @@ export const Main = () => {
         <h1>UPCOMING</h1>
         <Link to="/marketplace"><button className='more_btn'>MORE UPCOMING</button></Link>
       </Toolbar>
-      <ConcertCard />
+      {/* <ConcertCard /> */}
       <div className='line'></div>
       <Toolbar>
         <h1>HOTISSUE</h1>
         <Link to="/marketplace/allconcert"><button className='more_btn'>MORE HOTISSUE</button></Link>
       </Toolbar>
-      <ConcertCard />
+      {/* <ConcertCard /> */}
     </main>
   )
 }

@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/mypage" element={<Mypage />} />
+          {/* <Route path="/upcomingdetail/concert/:concertId" element={<Upcomingdetail />} /> */}
           <Route path="/upcomingdetail" element={<Upcomingdetail />} />
           <Route path="/marketplace/*" element={<Marketplace />} />
           <Route path="*" element={<Emptypage />} />

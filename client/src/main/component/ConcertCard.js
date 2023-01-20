@@ -1,90 +1,51 @@
-import React from 'react'
+import React, { useState, useEffect, useNavigate } from 'react'
 
-import bp from '../banner/blackpink.jpeg';
-import bts from '../banner/bts.jpeg';
-import idle from '../banner/i-dle.jpeg';
-import younha from '../banner/younha.jpeg';
+import axios from "axios";
 
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
 
 export const ConcertCard = () => {
+  const navigate = useNavigate();
+  const [concertinfo, setConcertinfo] = useState([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:5000/nftpark/concertInfo', {
+      withCredentials: true
+    }).then((res) => {
+      setConcertinfo(res.data.data);
+      console.log(res.data.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
+
   return (
     <div className='concercard_container'>
-      <Card sx={{ maxWidth: 250 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={bp}
-            alt="img"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            BLACKPINK
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              BORN PINK world tour asia 
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-
-      <Card sx={{ maxWidth: 250 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={bts}
-            alt="img"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            BTS
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              BTS world tour
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-
-      <Card sx={{ maxWidth: 250 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={idle}
-            alt="img"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            i-dle
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            i-dle world tour asia 
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-
-      <Card sx={{ maxWidth: 250 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={younha}
-            alt="img"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            younha
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            younha world tour asia 
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      {concertinfo.map((data, idx) => {
+        return (
+          <Card 
+            sx={{ maxWidth: 250 }} 
+            onClick = {() => {
+              navigate(`/upcomingdetail/concert/${data.id}`)
+              window.scrollTo(0,0)
+            }}
+            key={idx}
+          >
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                image={data.image}
+                alt="img"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">{data.singer_name}</Typography>
+                <Typography variant="body2" color="text.secondary">{data.title}</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        )
+      })}
     </div>
   )
 }
