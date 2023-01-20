@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
-export const UseContext = createContext({
+export const UseContext = createContext(
+  {
   user: {
     id: "",
     nickname: "",
@@ -7,7 +8,8 @@ export const UseContext = createContext({
     address: "",
   },
   setUsers: () => {},
-});
+}
+);
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
@@ -18,10 +20,12 @@ const UserContextProvider = ({ children }) => {
   });
 
   const setUserHandler = (data) => setUser(data);
+
   const usercontext = {
     user: user,
     setUsers: setUserHandler,
   };
+
 
   return (
     <UseContext.Provider value={usercontext}>{children}</UseContext.Provider>
