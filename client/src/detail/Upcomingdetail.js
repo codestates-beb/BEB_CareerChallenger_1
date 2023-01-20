@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Detail.css';
 import concertimg from './concertimg.gif';
 import { Card, Typography, CardContent, CardHeader, Divider, FormControl, InputLabel, Select, MenuItem, Box } from '@mui/material';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router';
 
 export const Upcomingdetail = () => {
+
+  const navigate = useNavigate();
+  const { concertId } = useParams();
+
   const [rankpick, setRankpick] = useState('');
+
 
   const handleRankpick = (e) => {
     setRankpick(e.target.value);
