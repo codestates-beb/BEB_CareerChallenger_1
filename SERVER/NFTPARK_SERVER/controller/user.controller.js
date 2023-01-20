@@ -2,13 +2,9 @@ const { db, sequelize } = require("../sequelize/models/index.js");
 const { Op } = require("sequelize");
 const { KakaoInfo, KakaoMessage } = require("../data/kakao");
 const axios = require("axios");
-const jwt = require("jsonwebtoken");
+const { jwtCreate } = require("../data/jwt");
 const { web3 } = require("../data/web3");
 require("dotenv").config();
-
-function jwtCreate(payload, expiresIn) {
-  return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: expiresIn });
-}
 
 exports.userInfo = (req, res) => {
   const userData = new KakaoInfo(

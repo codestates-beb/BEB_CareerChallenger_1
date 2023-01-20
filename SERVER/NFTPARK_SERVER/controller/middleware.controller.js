@@ -1,11 +1,12 @@
 const { redisCli } = require("../redis/redisconnection");
 const jwt = require("jsonwebtoken");
+const { jwtVerify } = require("../data/jwt");
 require("dotenv").config();
 
 exports.authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
   try {
-    req.userInfo = jwt.verify(token, process.env.SECRET_KEY);
+    req.userInfo = jwtVerify(token);
     return next();
   } catch (err) {
     if (err.name === "TokenExpiredError") {
