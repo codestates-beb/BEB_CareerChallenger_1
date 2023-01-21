@@ -54,10 +54,11 @@
 	margin-left: 20px;
 }
 
-/* ConcertCard css */
 .concercard_container {
 	display: grid;
-  grid-template-columns: repeat(4, minmax(250px, 200px));
+  grid-template-columns: repeat(5, minmax(250px, 200px));
   column-gap: 30px;
   justify-content: center;
 }
+
+
