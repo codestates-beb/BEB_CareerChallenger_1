@@ -9,7 +9,7 @@ import { BuyOnsaleModal } from './component/BuyOnsaleModal';
 export const Onsale = () => {
   return (
     <div>
-      <h1>On Sale</h1>
+      <Typography variant="h4" fontWeight={700} sx={{ m:3 }}>On Sale</Typography>
       <div className='marketplacecard_container'>
         <Card sx={{ width: 298, height: 300 }} >
           <CardMedia
@@ -41,6 +41,7 @@ export const Onsale = () => {
           </CardContent>
         </Card>
       </div>
+      <div className='marketplace_line'/>
     </div>
   )
 }

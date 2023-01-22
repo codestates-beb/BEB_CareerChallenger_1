@@ -6,11 +6,15 @@
 
 .nav_btn {
   background: none;
-	border: 1px solid;
-	padding: 10px 50px;
+	border: none;
 	cursor: pointer;
-  margin: 10px auto 20px auto;
-	display: block;
+  padding: 0 15px;
+  font-size:large;
+}
+
+/* Footer css */
+.footer_container {
+  text-align: center;
 }
 
 /* Emptypage css */

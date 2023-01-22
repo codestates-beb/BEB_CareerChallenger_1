@@ -10,6 +10,7 @@ export const BuyModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const date = new Date();
   return (
     <div>
       <ArrowCircleRightOutlinedIcon onClick={handleOpen}/>
@@ -34,7 +35,7 @@ export const BuyModal = () => {
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보 확인</Typography>
               <div className='ticketinfo_box'>
                 <Typography>관람일시 | 2023.01.27 </Typography>
-                <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
+                <Typography sx={{ mt: 1 }}>예매일 | {date.getFullYear()}.{date.getMonth() + 1}.{date.getDate()}</Typography>
                 <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
               </div>

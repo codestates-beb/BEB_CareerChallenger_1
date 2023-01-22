@@ -4,11 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import bp from '../banner/blackpink.jpeg';
-import bts from '../banner/bts.jpeg';
-import idle from '../banner/i-dle.jpeg';
-import younha from '../banner/younha.jpeg';
+import { useNavigate } from 'react-router';
+export const Mainbanner = ({ concertinfo }) => {
+  const navigate = useNavigate();
 
-export const Mainbanner = () => {
+  console.log(concertinfo)
+
   const bannerSettings = {
     dots: true,
     infinite: true,
@@ -25,24 +26,62 @@ export const Mainbanner = () => {
         <div className='banner_container'>
           <img className='sliderimg' src = {bp} alt='banner'/>
           <div className='banner_content_container'>
-              <h2 className='banner_who'>BLACKPINK</h2>
-              <h1 className='banner_title'>BORN PINK world tour asia</h1>
-              <button className='banner_btn'>SHOW</button>  
-          </div>
+            <h1 className='banner_who'>BLACKPINK</h1>
+            <h2 className='banner_title'>BLACKPINK WORLD TOUR [BORN PINK]</h2>
+            <button className='banner_btn' 
+              onClick = {() => {
+                navigate(`/detail/2`)
+                window.scrollTo(0,0)
+              }}>SHOW</button>  
+            </div>
         </div>
         <div className='banner_container'>
-          <img className='sliderimg' src = {bts} alt='banner'/>
+          <img className='sliderimg' src = {bp} alt='banner'/>
           <div className='banner_content_container'>
-              <h2 className='banner_who'>BTS</h2>
-              <h1 className='banner_title'>Yet to Come in BUSAN</h1>
-              <button className='banner_btn'>SHOW</button>
+            <h1 className='banner_who'>AESPA</h1>
+            <h2 className='banner_title'>2023 aespa 1st Concert ‘SYNK : HYPER LINE’</h2>
+            <button className='banner_btn'
+              onClick = {() => {
+                navigate(`/detail/6`)
+                window.scrollTo(0,0)
+              }}>SHOW</button>
           </div>
         </div>
         <div className='banner_container'>
-          <img className='sliderimg' src = {idle} alt='banner'/>
+          <img className='sliderimg' src = {bp} alt='banner'/>
+          <div className='banner_content_container'>
+            <h1 className='banner_who'>TOMORROW X TOGETHER</h1>
+            <h2 className='banner_title'>TOMORROW X TOGETHER WORLD TOUR <br/> 〈ACT : SWEET MIRAGE〉 IN SEOUL</h2>
+            <button className='banner_btn'
+              onClick = {() => {
+                navigate(`/detail/9`)
+                window.scrollTo(0,0)
+              }}>SHOW</button>
+          </div>
         </div>
         <div className='banner_container'>
-          <img className='sliderimg' src = {younha} alt='banner'/>
+          <img className='sliderimg' src = {bp} alt='banner'/>
+          <div className='banner_content_container'>
+            <h1 className='banner_who'>SEVENTEEN</h1>
+            <h2 className='banner_title'>2023 SVT 7TH FAN MEETING <br/> 〈SEVENTEEN in CARAT LAND〉</h2>
+            <button className='banner_btn'
+              onClick = {() => {
+                navigate(`/detail/8`)
+                window.scrollTo(0,0)
+              }}>SHOW</button>
+          </div>
+        </div>
+        <div className='banner_container'>
+          <img className='sliderimg' src = {bp} alt='banner'/>
+          <div className='banner_content_container'>
+            <h1 className='banner_who'>IU</h1>
+            <h2 className='banner_title'>2023 IU CONCERT <br/> 〈The Golden Hour : 오렌지 태양 아래〉</h2>
+            <button className='banner_btn'
+              onClick = {() => {
+                navigate(`/detail/10`)
+                window.scrollTo(0,0)
+              }}>SHOW</button>
+          </div>
         </div>
       </Slider>
     </>

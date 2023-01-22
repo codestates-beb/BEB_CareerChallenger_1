@@ -7,7 +7,7 @@ import { Upcoming } from './Upcoming';
 
 export const Marketplace = ({ concertinfo }) => {
   return (
-    <>
+    <div className='marketplace_container'>
       <Tabs />
       <Routes>
         <Route path="/" element={<Upcoming concertinfo={concertinfo}/>} />
@@ -15,6 +15,6 @@ export const Marketplace = ({ concertinfo }) => {
         <Route path="/onsale" element={<Onsale concertinfo={concertinfo}/>} /> 
         <Route path="*" element={<Emptypage />} /> 
       </Routes>
-    </>
+    </div>
   )
 }

@@ -57,11 +57,14 @@ const Nav = () => {
         <Link to="/mypage">
           <button className='nav_btn'>예약확인/취소</button>
         </Link>
+        <Link to="/marketplace">
+          <button className='nav_btn'>MARKETPLACE</button>
+        </Link>
         <Link to="/mypage">
           <Avatar
           alt="kakao img"
           src={user.profile_image}
-          sx={{ width: 56, height: 56 }}
+          sx={{ width: 56, height: 56, m:1 }}
           />
         </Link>
       </>
@@ -71,18 +74,9 @@ const Nav = () => {
   const Logout = () => {
     return (
       <>
-        {/* <Link to="/fundingdetail">
-          <button className='nav_btn'>FUNDING DETAIL</button>
-        </Link>
-        <Link to="/detail">
-          <button className='nav_btn'>DETAIL</button>
-        </Link>
-        <Link to="/mypage">
-          <button className='nav_btn'>MYPAGE</button>
-        </Link>
         <Link to="/marketplace">
           <button className='nav_btn'>MARKETPLACE</button>
-        </Link> */}
+        </Link>
         <button className="kakao_btn" type="button" onClick={loginHandler}>
           <img className="kakao_login" src={login} alt="kakao login" />
         </button>
@@ -95,13 +89,6 @@ const Nav = () => {
       <Link to="/">
         <img className="nav_logo" src={Logo} alt="logo" />
       </Link>
-      <Link to="/mypage">
-        <button className='nav_btn'>MYPAGE</button>
-      </Link>
-      <Link to="/marketplace">
-        <button className='nav_btn'>MARKETPLACE</button>
-      </Link>
-
       <Box sx={{ flexGrow: 1 }} />
       {user.id ? <LoggedIn /> : <Logout /> }
     </Toolbar>

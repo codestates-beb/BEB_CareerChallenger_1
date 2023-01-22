@@ -9,7 +9,7 @@ export const Upcoming = ({ concertinfo }) => {
 
   return (
     <div>
-      <h1>Upcoming</h1>
+      <Typography variant="h4" fontWeight={700} sx={{ m:3 }}>Upcoming</Typography>
       <div className='marketplacecard_container'>
         {concertinfo.map((data, idx) => {
           return (
@@ -46,6 +46,7 @@ export const Upcoming = ({ concertinfo }) => {
           )
         })}
       </div>
+      <div className='marketplace_line'/>
     </div>
   )
 }
