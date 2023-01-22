@@ -68,16 +68,16 @@ module.exports = {
     // 추첨
     draw: async(req,res) => {
         try {
-            const { title } = req.body
+            // const { title } = req.body
 
-            // keccak256(encodePacked(티켓명 + 등급)) 잘못입력 시, 진행x
-            const tileTypeBytes = getString(title);
-            const isRegisterProduction = await isRegisterProduction(tileTypeBytes)
+            // // keccak256(encodePacked(티켓명 + 등급)) 잘못입력 시, 진행x
+            // const tileTypeBytes = getString(title);
+            // const isRegisterProduction = await isRegisterProduction(tileTypeBytes)
 
-            // 스마트컨트렉트에 등록된 상품이 아니면 진행x
-            if(!isRegisterProduction) {
-                return res.status(400).send(`Unregistered Production`)
-            }
+            // // 스마트컨트렉트에 등록된 상품이 아니면 진행x
+            // if(!isRegisterProduction) {
+            //     return res.status(400).send(`Unregistered Production`)
+            // }
 
             // @ array type : 당첨자 리스트 10명(example)
             // draw() = [
@@ -93,6 +93,7 @@ module.exports = {
             //     '0x272A27Cf346F28183D544784eBe450Fa16B5b77F'
             //   ]
             const winner = _draw();
+            console.log(winner);
             
             // todo(SM) : 당첨자 리스트 MerkleTree Root Smart Contract에 저장
 
