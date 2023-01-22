@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
     await channel.consume(
       queue,
       (message) => {
-        console.log(" [x] Received '%s'", message.content.toString());
+        console.log(" [x] Received = " + message.content.toString());
         channel.ack(message);
       },
       { noAck: false }
