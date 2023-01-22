@@ -10,7 +10,7 @@ module.exports = {
       console.log(msg);
       res.status(200).json({ result: true });
     } catch (error) {
-      console.log(error);
+      console.log("send_mssage 함수 에러", error);
     }
   },
   recv_message: async (req, res) => {
