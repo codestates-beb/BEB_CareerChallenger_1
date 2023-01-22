@@ -17,6 +17,10 @@ module.exports = function(sequelize, DataTypes) {
     address: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    phone_number: {
+      type: DataTypes.STRING(50),
+      allowNull: true
     }
   }, {
     sequelize,
@@ -30,6 +34,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "address",
+        using: "BTREE",
+        fields: [
+          { name: "address" },
         ]
       },
     ]
