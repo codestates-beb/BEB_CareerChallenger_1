@@ -1,48 +1,77 @@
 require('dotenv').config();
-const {draw,getString,entry} = require('../function/ticketing.function')
-const {isRegisterProduction} = require('../function/parkErc721.function')
+const {db} = require('../sequelize/models');
+const {draw,_entry,merkleTreeRoot,merkleTreeProof,canClaim} = require('../function/ticketing.function')
+const {isRegisterProduction,getString,_registerTicket,_buyNFT} = require('../function/parkErc721.function')
 
 //process.env.RPC_URL
 module.exports = {
     test: async(req,res) => {
         try {
-            return res.status(200).send()
+            return res.status(200).send(winners)
         } catch (error) {
             return res.status(404).send(`error MESSAGE : ${error}`)
         }
     },
-    // 응모 api
+    // 상품(티켓)원가 가격 등록
+    registerTicket: async(req,res) => {
+        try {
+            const { title,cost } = req.body;
+            const tileTypeBytes = getString(title);
+            if(cost.length < 18) {
+                cost = cost * 1e18
+            }
+            const result = await _registerTicket(tileTypeBytes,cost);
+
+            // false tx
+            if(result.status === false) {
+                return res.status(404).send(`error MESSAGE : FALSE entry Transaction`)
+            }
+            return res.status(200).send("success register tickent");
+        } catch (error) {
+            return res.status(404).send(`error MESSAGE : ${error}`)
+        }
+    },
+    // 응모
     entry: async(req,res) => {
         try {
-            const { name,title,rank,address } = req.body
-
+            const { name,title,address } = req.body
             // keccak256(encodePacked(티켓명 + 등급)) 잘못입력 시, 진행x
-            const tileTypeBytes = getString(title,rank);
-            const isRegisterProduction = await isRegisterProduction(tileTypeBytes)
+            const tileTypeBytes = getString(title);
+            const _isRegisterProduction = await isRegisterProduction(tileTypeBytes)
             
             // 스마트컨트렉트에 등록된 상품이 아니면 진행x
-            if(!isRegisterProduction) {
+            if(!_isRegisterProduction) {
                 return res.status(400).send(`Unregistered Production`)
             }
 
             // 응모하기 : transection to Smart Contract
-            const entryResult = await entry(tileTypeBytes,address);
-            
-            // todo(DB)?! : applicant DB 데이터 저장 구현
-            // table info : [id][name(?)][address][title][rank][time(default now)]
+            const entryResult = await _entry(address,tileTypeBytes);
 
-            return res.status(200).send()
+            // false tx
+            if(entryResult.status === false) {
+                return res.status(404).send(`error MESSAGE : FALSE entry Transaction`)
+            }
+
+            // applicant DB 데이터 저장 구현
+            // table info : [id][name][address][title][time(default now)]
+            const result = await db['applicant'].create({
+                name,
+                address,
+                title,
+            })
+
+            return res.status(200).send(result)
         } catch (error) {
             return res.status(404).send(`error MESSAGE : ${error}`)
         }
     },
-    // 추첨 api
+    // 추첨
     draw: async(req,res) => {
         try {
-            const { title,rank } = req.body
+            const { title } = req.body
 
             // keccak256(encodePacked(티켓명 + 등급)) 잘못입력 시, 진행x
-            const tileTypeBytes = getString(title,rank);
+            const tileTypeBytes = getString(title);
             const isRegisterProduction = await isRegisterProduction(tileTypeBytes)
 
             // 스마트컨트렉트에 등록된 상품이 아니면 진행x
@@ -56,12 +85,52 @@ module.exports = {
             // todo(SM) : 당첨자 리스트 MerkleTree Root Smart Contract에 저장
 
             // todo(DB) : winners DB 데이터 저장 구현
-            // table info : [id][address][title][rank]
+            // table info : [id][address][title]
 
 
             return res.status(200).send()
         } catch (error) {
             return res.status(404).send(`error MESSAGE : ${error}`)
         }
-    }
+    },
+    // 응모 당첨 확인
+    isWinner: async(req,res) => {
+        try {
+            const { title,address } = req.body
+
+            const winners = await db['winners'].findAll({
+                where: {
+                    title
+                },
+            });
+
+            // typeof array
+            const proof = merkleTreeProof(winners,address);
+            const tileTypeBytes = getString(title);
+
+            const result = await canClaim(tileTypeBytes,address,proof);
+            return res.status(200).send(result)
+        } catch (error) {
+            return res.status(404).send(`error MESSAGE : ${error}`)
+        }
+    },
+    // 티켓(NFT) 구매
+    buyNFT: async(req,res) => {
+        try {
+            const { title,to,url } = req.body
+            const winners = await db['winners'].findAll({
+                where: {
+                    title
+                },
+            });
+
+            // typeof array
+            const proof = merkleTreeProof(winners,to);
+            const tileTypeBytes = getString(title);
+            await _buyNFT(tileTypeBytes,to,url,proof)
+            return res.status(200).send("success but ticket")
+        } catch (error) {
+            return res.status(404).send(`error MESSAGE : ${error}`)
+        }
+    },
 }

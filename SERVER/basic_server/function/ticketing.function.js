@@ -14,35 +14,30 @@ const testWinner = [
 require('dotenv').config();
 const Web3 = require("web3");
 const web3 = new Web3(`https://polygon-mumbai.infura.io/v3/${process.env.INFURA_API_KEY}`);
+const { MerkleTree } = require("merkletreejs");
+const keccak256 = require("keccak256");
 
 const {abi} = require('../ABI/Ticketing.json');
 
 const account = web3.eth.accounts.wallet.add(process.env.NMEMONIC);
 
-const Contract = new web3.eth.Contract(
+const contract = new web3.eth.Contract(
     abi,
     process.env.Ticketing
   );
 
-// const transaction = {
-//     from: account.address,
-//     gas: 19000000,
-//     gasPrice: getGasPrice(),
-// };
-
-// titleTypeBytes : 0x6c9df39b3fa672ea7443a48cf828488a205f9a5ab7f0315896ca7a6ddc1689ca
-export const entry = async(applicant,titleTypeBytes) => {
+const _entry = async(applicant,titleTypeBytes) => {
     const transaction = {
         from: account.address,
         gas: 19000000,
         gasPrice: await getGasPrice(),
     };
 
-    const result = await Contract.methods.entry(applicant,titleTypeBytes).send(transaction)
+    const result = await contract.methods.enter(applicant,titleTypeBytes).send(transaction)
     return result;
 }
 
-export const draw = () => {
+ const draw = () => {
     // todo : 블록체인 네트워크에서 응모리스트 불러오기(event)
 
     // Example : 응모된 50개 계정 중, 10개 계정 당첨 시나리오
@@ -71,26 +66,32 @@ export const draw = () => {
     return testWinner
   }
 
-  export const merkleTreeRoot = (list) => {
-    const _merkleTree = new MerkleTree(
-        list,
-        keccak256,
-        { hashLeaves: true, sortPairs: true }
-      );
-    const root = _merkleTree.getHexRoot();
 
-    return root
-  }
+// 응모 당첨 여부 확인
+const canClaim = async(titleTypeBytes,address,merkleProof) => {
+  const result = await contract.methods.canClaim(titleTypeBytes,address,merkleProof).call();
 
-  export const getString= async(title,rank) => {
-    const string = `${title} ${rank}`
-    const result = web3.utils.encodePacked(
-        {value: string, type: 'string'},
-      );
-
-    return web3.utils.soliditySha3(result);
+  return result;
 }
 
 const getGasPrice = async() => {
     return await web3.eth.getGasPrice()
 }
+
+const merkleTree = (list) => {
+  const _merkleTree = new MerkleTree(
+      list,
+      keccak256,
+      { hashLeaves: true, sortPairs: true }
+    );
+  return _merkleTree
+}
+
+const merkleTreeRoot = (list) => {
+  return root = merkleTree(list).getHexRoot();
+}
+
+const merkleTreeProof = (list,address) => {
+  return merkleTree(list).getHexProof(keccak256(address))
+}
+module.exports = {_entry,draw,merkleTreeRoot,merkleTreeProof,canClaim};

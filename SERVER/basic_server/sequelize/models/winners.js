@@ -16,11 +16,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: ""
     },
-    rank: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: ""
-    }
   }, {
     sequelize,
     tableName: 'winners',
