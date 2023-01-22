@@ -24,8 +24,8 @@ function makeSignature(uri) {
 }
 
 const send_message = async () => {
-  // 환경변수로 저장했던 중요한 정보들
   console.log("send_message 함수 실행중");
+  // 환경변수로 저장했던 중요한 정보들
   try {
     const serviceId = process.env.SENS_SERVICE_ID;
     const my_number = process.env.SENS_MYNUM;
@@ -50,7 +50,7 @@ const send_message = async () => {
       }
     );
   } catch (err) {
-    console.log(err.data);
+    console.log(err);
   }
 };
 
