@@ -37,7 +37,7 @@ const _entry = async(applicant,titleTypeBytes) => {
     return result;
 }
 
- const draw = () => {
+ const _draw = () => {
     // todo : 블록체인 네트워크에서 응모리스트 불러오기(event)
 
     // Example : 응모된 50개 계정 중, 10개 계정 당첨 시나리오

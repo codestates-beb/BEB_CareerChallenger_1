@@ -1,6 +1,6 @@
 require('dotenv').config();
 const {db} = require('../sequelize/models');
-const {draw,_entry,merkleTreeRoot,merkleTreeProof,canClaim} = require('../function/ticketing.function')
+const {_draw,_entry,merkleTreeRoot,merkleTreeProof,canClaim} = require('../function/ticketing.function')
 const {isRegisterProduction,getString,_registerTicket,_buyNFT} = require('../function/parkErc721.function')
 
 //process.env.RPC_URL
@@ -80,13 +80,33 @@ module.exports = {
             }
 
             // @ array type : 당첨자 리스트 10명(example)
+            // draw() = [
+            //     '0xb5a213F4eA3dCc2da6b6d716FD8B7f248cff36c4',
+            //     '0xF1236877Ed90B4d041c4a16B4AFf1b95a651e236',
+            //     '0xBF43445fDc7C9b949E40CCA10415da60a81CeD0b',
+            //     '0xcFa0dcf33d479832f5F2Bd2F1443B61e0CB55e5a',
+            //     '0x840fC5a4bc5af594964319bD5c97F390971c62bd',
+            //     '0x421C3Fa14743954F74cdcEc2b065F6617982e82E',
+            //     '0x413d23d5e295003a3A2218e1A70913738715b11b',
+            //     '0x23F5F1fFDf5cDCE8bbd41e771D44D225b1Bece1b',
+            //     '0xa4965137Cb67D0354D8f6050feB603E8d9C3079c',
+            //     '0x272A27Cf346F28183D544784eBe450Fa16B5b77F'
+            //   ]
             const winner = draw();
             
             // todo(SM) : 당첨자 리스트 MerkleTree Root Smart Contract에 저장
 
             // todo(DB) : winners DB 데이터 저장 구현
             // table info : [id][address][title]
-
+            /**
+             * DB 저장 example
+             * [id][address][title]
+             * [0][0xb5a213F4eA3dCc2da6b6d716FD8B7f248cff36c4][IU 콘서트]
+             * [1][0xF1236877Ed90B4d041c4a16B4AFf1b95a651e236][IU 콘서트]
+             * [2][0xBF43445fDc7C9b949E40CCA10415da60a81CeD0b][IU 콘서트]
+             * ....
+             * 
+             */
 
             return res.status(200).send()
         } catch (error) {
