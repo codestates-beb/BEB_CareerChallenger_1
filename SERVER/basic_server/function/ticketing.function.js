@@ -94,4 +94,4 @@ const merkleTreeRoot = (list) => {
 const merkleTreeProof = (list,address) => {
   return merkleTree(list).getHexProof(keccak256(address))
 }
-module.exports = {_entry,draw,merkleTreeRoot,merkleTreeProof,canClaim};
+module.exports = {_entry,_draw,merkleTreeRoot,merkleTreeProof,canClaim};
