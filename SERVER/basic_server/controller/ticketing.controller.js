@@ -92,7 +92,7 @@ module.exports = {
             //     '0xa4965137Cb67D0354D8f6050feB603E8d9C3079c',
             //     '0x272A27Cf346F28183D544784eBe450Fa16B5b77F'
             //   ]
-            const winner = draw();
+            const winner = _draw();
             
             // todo(SM) : 당첨자 리스트 MerkleTree Root Smart Contract에 저장
 
