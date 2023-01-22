@@ -95,10 +95,6 @@ const Nav = () => {
       <Link to="/">
         <img className="nav_logo" src={Logo} alt="logo" />
       </Link>
-
-      <Link to="/upcomingdetail">
-        <button className='nav_btn'>UPCOMING DETAIL</button>
-      </Link>
       <Link to="/mypage">
         <button className='nav_btn'>MYPAGE</button>
       </Link>

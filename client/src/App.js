@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Nav from "./component/Nav";
@@ -8,19 +8,33 @@ import { Mypage } from "./mypage/Mypage";
 import UserContextProvider from "./User/UserContextProvider";
 import { Marketplace } from "./marketplace/Marketplace";
 import { Emptypage } from "./component/Emptypage";
-import { Upcomingdetail } from "./detail/Upcomingdetail";
+import { Detail } from "./detail/Detail";
+import axios from "axios";
+
 
 function App() {
+  const [concertinfo, setConcertinfo] = useState([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:5000/nftpark/concertInfo', {
+      withCredentials: true
+    }).then((res) => {
+      setConcertinfo(res.data.data);
+      console.log(res.data.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
+
   return (
     <>
       <UserContextProvider>
         <Nav />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main concertinfo={concertinfo}/>} />
           <Route path="/mypage" element={<Mypage />} />
-          {/* <Route path="/upcomingdetail/concert/:concertId" element={<Upcomingdetail />} /> */}
-          <Route path="/upcomingdetail" element={<Upcomingdetail />} />
-          <Route path="/marketplace/*" element={<Marketplace />} />
+          <Route path="/detail/:id" element={<Detail concertinfo={concertinfo}/>} />
+          <Route path="/marketplace/*" element={<Marketplace concertinfo={concertinfo}/>} />
           <Route path="*" element={<Emptypage />} />
         </Routes>
         <Footer />

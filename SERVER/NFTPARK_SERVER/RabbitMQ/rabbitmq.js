@@ -32,6 +32,7 @@ class RabbitmqWrapper {
     const sending = await this.channel.sendToQueue(
       this._queueName,
       this.encode(msg),
+
       {
         persistent: true,
       }

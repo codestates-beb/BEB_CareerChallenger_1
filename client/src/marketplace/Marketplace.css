@@ -1,6 +1,17 @@
-/* Allconcert css */
-.allcon_img {
-  height: 140px;
+.marketplacecard_container {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(250px, 200px));
+  column-gap: 30px;
+  justify-content: center;
+}
+
+/* Upcoming css */
+.upcoming_card_line {
+  background: none;
+	border-top: 2px dotted rgb(167, 164, 164);
+  margin-top: 20px;
+	display: block;
+  width: 210px;
 }
 
 /* Onsale css */
@@ -9,11 +20,95 @@
   float: left;
 }
 
-/* MarketplaceCard css */
-.marketplace_card_line {
+.onsale_price {
+  text-decoration: line-through;
+}
+
+.onsale_price2 {
+  font-weight: 700;
+}
+
+.onsale_card_line {
   background: none;
 	border-top: 2px dotted rgb(167, 164, 164);
-  margin-top: 20px;
-	display: block;
-  width: 210px;
+  margin-top: 25px;
+  width: 260px;
 }
+
+.onsale_card_left {
+  width: 85%;
+  float: left;
+}
+
+/* buyonsaleModal css*/
+.modal_icon {
+  margin-top: 8px;
+}
+
+.mypage_modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal_line {
+  border-top: 3px solid #222;
+	width: 460px;
+	margin: 20px auto 0;
+	display: block;
+}
+
+.modal_line2 {
+  border-top: 2px dotted rgb(167, 164, 164);
+	width: 410px;
+	margin: 20px auto 20px;
+	display: block;
+}
+
+.modal_title {
+  margin-left: 20px;
+}
+
+.ticketinfo_box {
+  border: 1px solid rgb(179, 174, 174);
+  padding: 10px 0 10px 20px ;
+  margin: 10px 0 20px ;
+  width: 385px;
+}
+
+.modal_imgtext {
+  height: 120px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.modal_img {
+  width: 25%;
+  float: left;
+}
+
+.modal_img img {
+  width: 80px;
+}
+
+.modal_text1 {
+  color: rgb(157, 153, 153);
+}
+
+.modal_info {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.modal_btn {
+  color: white;
+  background-color: black;
+	border: 1px solid;
+	padding: 12px 50px;
+	cursor: pointer;
+  margin: 20px auto 5px ;
+	display: block;
+  font-weight: 700;
+}
+
