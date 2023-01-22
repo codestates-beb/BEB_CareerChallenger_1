@@ -10,7 +10,7 @@ const auto = new SequelizeAuto(
     host: process.env.DB_HOST, // DB Host 주소
     port: process.env.DB_PORT, // 포트 번호
     dialect: "mysql", // 사용하는 DBMS 종류
-  }
+  },
 );
 
 auto.run();
