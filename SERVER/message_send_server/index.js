@@ -4,6 +4,8 @@ const cors = require("cors");
 const port = 5002;
 const amqp = require("amqplib");
 const { send_message } = require("./sns");
+const { db } = require("./sequelize/models/index.js");
+const { Op } = require("sequelize");
 require("dotenv").config();
 
 app.use(cors());
@@ -31,8 +33,22 @@ app.get("/", (req, res) => {
     await channel.assertQueue(queue, { durable: false });
     await channel.consume(
       queue,
-      (message) => {
-        console.log(" [x] Received = " + message.content.toString());
+      async (message) => {
+        let address_data = message.content.toString().split(",").slice(0, -1);
+        let sns_data = [];
+        const winnerNumbers = await db.user.findAll({
+          attributes: ["phone_number", "nickname"],
+          where: {
+            address: { [Op.in]: address_data },
+          },
+        });
+        winnerNumbers.forEach((element) => {
+          sns_data.push({
+            to: `${element.dataValues.phone_number}`,
+            content: `${element.dataValues.nickname}님 아이유 콘서트에 당첨되셨습니다.`,
+          });
+        });
+        send_message(sns_data);
         channel.ack(message);
       },
       { noAck: false }
