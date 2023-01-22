@@ -8,26 +8,23 @@ export const Detail = ({ concertinfo }) => {
 
   return (
     <div className='detail_container'>
+      <div className='detailcontainer_line'/>
       <div className='detail_info'>
-        <div className='detail_img'>
-          <img src = {concertinfo[id-1].image} alt='concertimg'/>
-        </div>
-        <div className='detail_text'>
-          <Card sx={{ width: 330 }}>
-            <CardContent>
-              <Divider textAlign="left">장소</Divider>
-              <Typography className='text_info'>{concertinfo[id-1].place}</Typography>
-              <Divider textAlign="left">공연날짜</Divider>
-              <Typography className='text_info'>{concertinfo[id-1].performancePeriod}</Typography>
-              <Divider textAlign="left">출연진</Divider>
-              <Typography className='text_info'>{concertinfo[id-1].singer_name}</Typography>
-              <Divider textAlign="left">관람연령</Divider>
-              <Typography className='text_info'>만 {concertinfo[id-1].ageLimit}세이상</Typography>
-            </CardContent>
-          </Card>
-        </div>
+        <img src = {concertinfo[id-1].image} alt='concertimg' className='detailimg'/>
+        <Card sx={{ width: 370, m:2 }}>
+          <CardContent>
+            <Divider textAlign="left">장소</Divider>
+            <Typography className='text_info' align='center'>{concertinfo[id-1].place}</Typography>
+            <Divider textAlign="left">공연날짜</Divider>
+            <Typography className='text_info' align='center'>{concertinfo[id-1].performancePeriod}</Typography>
+            <Divider textAlign="left">출연진</Divider>
+            <Typography className='text_info' align='center'>{concertinfo[id-1].singer_name}</Typography>
+            <Divider textAlign="left">관람연령</Divider>
+            <Typography className='text_info' align='center'>만 {concertinfo[id-1].ageLimit}세이상</Typography>
+          </CardContent>
+        </Card>
       </div>
-      <Card sx={{ width: 430 }}>
+      <Card sx={{ width: 480 }}>
         <CardHeader title={concertinfo[id-1].title}/>
         <CardContent>
           <h3>KRW 130,000</h3>

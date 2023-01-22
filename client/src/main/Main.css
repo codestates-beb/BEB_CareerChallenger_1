@@ -1,48 +1,11 @@
+.main_container {
+	min-height: 1500px;
+}
+
 .line {
 	border-top: 5px solid #222;
-	width: 1200px;
+	width: 1370px;
 	margin: 80px auto 20px;
-	display: block;
-}
-
-.banner_container {
-	height: 400px;
-	position: relative;
-}
-
-.sliderimg {
-	width: 100%;
-	height: 400px;
-	position: absolute;
-}
-
-.banner_content_container {
-	width: 550px;
-	height: 320px;
-	background-color: rgba(0, 0, 0, 0.65);
-	position: relative;
-	margin: 0 auto;
-	margin-top: 40px;
-}
-
-.banner_who {
-	text-align: center;
-	color: #ffffff;
-	letter-spacing: 2px;
-}
-
-.banner_title {
-	text-align: center;
-	color: #ffffff;
-}
-
-.banner_btn {
-	background: none;
-	border: 1px solid #fff;
-	padding: 10px 30px;
-	color: #ffffff;
-	cursor: pointer;
-	margin: auto;
 	display: block;
 }
 
@@ -58,7 +21,61 @@
 	display: grid;
   grid-template-columns: repeat(5, minmax(250px, 200px));
   column-gap: 30px;
+	row-gap: 20px;
   justify-content: center;
+	margin-top: 20px;
+}
+
+.main_card_line {
+	background: none;
+	border-top: 2px dotted rgb(167, 164, 164);
+  margin-top: 20px;
+	display: block;
+  width: 210px;
+}
+
+/* Mainbanner css */
+.banner_container {
+	height: 400px;
+	position: relative;
+}
+
+.sliderimg {
+	width: 100%;
+	height: 400px;
+	position: absolute;
+}
+
+.banner_content_container {
+	width: 600px;
+	height: 300px;
+	background-color: rgba(0, 0, 0, 0.65);
+	position: relative;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.banner_who {
+	text-align: center;
+	color: #ffffff;
+	letter-spacing: 2px;
+	padding: 40px 10px 20px 10px;
+}
+
+.banner_title {
+	text-align: center;
+	color: #ffffff;
+	padding: 0 30px 20px 30px;
+}
+
+.banner_btn {
+	background: none;
+	border: 1px solid #fff;
+	padding: 10px 30px;
+	color: #ffffff;
+	cursor: pointer;
+	margin: auto;
+	display: block;
 }
 
 
