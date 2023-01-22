@@ -6,30 +6,49 @@ const {abi} = require('../ABI/PARK.json');
 
 const account = web3.eth.accounts.wallet.add(process.env.NMEMONIC);
 
-const Contract = new web3.eth.Contract(
+const contract = new web3.eth.Contract(
     abi,
     process.env.PARK_ERC721
   );
 
+  const _registerTicket = async(titleTypeBytes,cost) => {
+    const transaction = {
+      from: account.address,
+      gas: 19000000,
+      gasPrice: await getGasPrice(),
+    };
+    const result = await contract.methods.registerTicket(titleTypeBytes,cost).send(transaction)
 
-export const getProductionCost= async(title) => {
-    return await Contract.methods.getProductionCost(title).call();
-}
-export const isRegisterProduction= async(title) => {
-    const cost = await Contract.methods.getProductionCost(title).call();
-    return cost !=0;
-}
-export const getSnapshot= async(title) => {
-    const result = await Contract.methods.getSnapshot(title).call();
     return result;
 }
 
-
-  export const getString= async(title,rank) => {
-    const string = `${title} ${rank}`
-    const result = web3.utils.encodePacked(
-        {value: string, type: 'string'},
-      );
-
-    return web3.utils.soliditySha3(result);
+// 티켓(NFT) 구매하기
+const _buyNFT = async(titleTypeBytes,to,url,merkleProof) => {
+  const transaction = {
+    from: account.address,
+    gas: 19000000,
+    gasPrice: await getGasPrice(),
+  };
+  const result = await contract.methods.buyNft(titleTypeBytes,to,url,merkleProof).send(transaction);
+  return result
 }
+
+ const getProductionCost= async(title) => {
+    return await contract.methods.getProductionCost(title).call();
+}
+ const isRegisterProduction= async(title) => {
+    const cost = await contract.methods.getProductionCost(title).call();
+    return cost !=0;
+}
+ const getSnapshot= async(title) => {
+    const result = await contract.methods.getSnapshot(title).call();
+    return result;
+}
+
+  const getString= async(title) => {
+    return web3.utils.soliditySha3({type: 'string', value: title});
+}
+const getGasPrice = async() => {
+  return await web3.eth.getGasPrice()
+}
+module.exports = {isRegisterProduction,getString,_registerTicket,_buyNFT};

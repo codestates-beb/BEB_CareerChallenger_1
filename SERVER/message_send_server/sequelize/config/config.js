@@ -7,6 +7,5 @@ const development = {
   username: process.env.USER_NAME,
   password: process.env.USER_PASSWD,
   database: process.env.DB_NAME,
-  logging:false
 };
 module.exports = { development };

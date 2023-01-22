@@ -1,31 +1,31 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('ticket', {
     id: {
-      type: DataTypes.BIGINT,
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    nickname: {
+    concert_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'concert',
+        key: 'id'
+      }
+    },
+    performanceTime: {
       type: DataTypes.STRING(50),
       allowNull: true
     },
-    profile_image: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    address: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    phone_number: {
-      type: DataTypes.STRING(50),
+    price: {
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'user',
-    hasTrigger: true,
+    tableName: 'ticket',
     timestamps: false,
     indexes: [
       {
@@ -37,10 +37,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "address",
+        name: "FK__concert",
         using: "BTREE",
         fields: [
-          { name: "address" },
+          { name: "concert_id" },
         ]
       },
     ]

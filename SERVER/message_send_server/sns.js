@@ -23,9 +23,9 @@ function makeSignature(uri) {
   return hash.toString(CryptoJS.enc.Base64);
 }
 
-const send_message = async () => {
-  // 환경변수로 저장했던 중요한 정보들
+const send_message = async (message_data) => {
   console.log("send_message 함수 실행중");
+  // 환경변수로 저장했던 중요한 정보들
   try {
     const serviceId = process.env.SENS_SERVICE_ID;
     const my_number = process.env.SENS_MYNUM;
@@ -37,8 +37,8 @@ const send_message = async () => {
         type: "SMS",
         countryCode: "82",
         from: my_number,
-        content: `님 문자왔나요?`,
-        messages: [{ to: `${my_number}` }],
+        content: `축하드립니다 당첨되셨습니다.`,
+        messages: message_data,
       },
       {
         headers: {
@@ -50,7 +50,7 @@ const send_message = async () => {
       }
     );
   } catch (err) {
-    console.log(err.data);
+    console.log(err);
   }
 };
 
