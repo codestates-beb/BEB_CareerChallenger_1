@@ -10,6 +10,7 @@ import { Marketplace } from "./marketplace/Marketplace";
 import { Emptypage } from "./component/Emptypage";
 import { Detail } from "./detail/Detail";
 import axios from "axios";
+import { Loading } from "./component/Loading";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail concertinfo={concertinfo}/>} />
           <Route path="/marketplace/*" element={<Marketplace concertinfo={concertinfo}/>} />
           <Route path="*" element={<Emptypage />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
         <Footer />
       </UserContextProvider>

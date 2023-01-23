@@ -7,9 +7,12 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 export const BuyOnsaleModal = () => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const date = new Date();
+
   return (
     <div>
       <LocalMallIcon onClick={handleOpen} className='modal_icon'/>

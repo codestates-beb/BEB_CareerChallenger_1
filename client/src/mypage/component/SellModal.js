@@ -7,6 +7,8 @@ import concertimg from '../../detail/concertimg.gif';
 
 export const SellModal = () => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

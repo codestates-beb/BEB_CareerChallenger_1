@@ -38,3 +38,23 @@
   margin: 30px auto 20px auto;
 	display: block;
 }
+
+/* loading css */
+.loading_background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(31, 30, 30, 0.9);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading_text {
+  font-size: 40px;
+  color: white;
+}
