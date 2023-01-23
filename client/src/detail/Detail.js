@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Detail.css';
 import { Card, Typography, CardContent, CardHeader, Divider } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 export const Detail = ({ concertinfo }) => {
   const { id } = useParams();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className='detail_container'>
