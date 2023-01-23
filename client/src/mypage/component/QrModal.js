@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import '../Mypage.css';
+import QrCode2Icon from '@mui/icons-material/QrCode2';
+import QRCode from "react-qr-code";
 import concertimg from '../../detail/concertimg.gif';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
-export const CancelModal = () => {
+export const QrModal = () => {
   const [open, setOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   return (
     <div>
-      <TaskAltIcon onClick={handleOpen}/> 
+      <QrCode2Icon onClick={handleOpen}/>
       <Modal
         open={open}
         onClose={handleClose}
@@ -23,8 +21,8 @@ export const CancelModal = () => {
       >
         <Card className='mypage_modal' sx={{ maxWidth: 500 }}>
           <CardContent>
-            <div className='modal_line'/>
-            <h2 className='modal_title'>티켓 예매 상세내역</h2>
+          <div className='modal_line'/>
+            <h2 className='modal_title'>입장 QR</h2>
             <div className='modal_imgtext'>
               <div className='modal_img'>
                 <img src = {concertimg} alt='concertimg'/>
@@ -42,14 +40,14 @@ export const CancelModal = () => {
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
                 <Typography sx={{ mt: 1 }}>결제 금액 | 130,000원</Typography>
               </div>
-              <div className='modal_line2'/>
-              <ErrorOutlineIcon color="error"/>
-              <Typography sx={{ mt: 1 }}>- 예매 수수료는 예매일 이후 취소 시에는 환불되지 않습니다.</Typography>
-              <Typography sx={{ mt: 1 }}>- 취소수수료는 취소시점에 따라 달라집니다.</Typography>
-              <Typography sx={{ mt: 1 }}>- 취소 진행 전, 반드시 주의 사항을 확인하시기 바랍니다.</Typography>
+              <QRCode
+                size={256}
+                style={{ height: "auto", width: "100px", marginLeft: "37%"}}
+                value="hey"
+                viewBox={`0 0 256 256`}
+              />
             </div>
             <div className='modal_line'/>
-            <button className='modal_btn'>취 소 하 기</button>
           </CardContent >
         </Card>
       </Modal>

@@ -35,7 +35,8 @@ export const SellModal = () => {
             <div className='modal_info'>
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보</Typography>
               <div className='ticketinfo_box'>
-                <Typography>관람일시 | 2023.01.27 14:00 1회</Typography>
+                <Typography>토큰ID | 23454353</Typography>
+                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27 14:00 1회</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
                 <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
