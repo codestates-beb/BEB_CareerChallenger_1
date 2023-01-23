@@ -31,6 +31,17 @@
 	display: block;
 }
 
+.disabled_btn {
+  color: white;
+  background-color: rgb(195, 189, 190);
+	border: 1px solid;
+	padding: 17px 70px;
+  font-weight: 800;
+  font-size: large;
+  margin: 20px auto 5px ;
+	display: block;
+}
+
 .detail_line {
   border-top: 1px dotted rgb(201, 195, 195);
 	margin: 10px auto 10px;

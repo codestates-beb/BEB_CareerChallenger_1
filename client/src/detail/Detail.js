@@ -7,6 +7,7 @@ export const Detail = ({ concertinfo }) => {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isEntry, setIsEntry] = useState(false);
 
   return (
     <div className='detail_container'>
@@ -32,22 +33,23 @@ export const Detail = ({ concertinfo }) => {
           <h3>KRW 130,000</h3>
           <div className='detail_line'/>
           <Typography variant="body2" gutterBottom>응모기간</Typography>
-          <Typography variant="body1">2023.01.26 ~ 2023.01.27</Typography>
+          <Typography variant="body1">2023.01.20 ~ 2023.01.24</Typography>
           <div className='detail_line'/>
           <Typography variant="body2" gutterBottom>당첨자 발표</Typography>
-          <h2>2023.01.27</h2>
+          <h2>2023.01.25</h2>
           <div className='detail_line'/>
           <Typography variant="body2" gutterBottom>당첨자 구매일</Typography>
-          <Typography variant="body1">2023.01.20 까지</Typography>
+          <Typography variant="body1">2023.01.25 까지</Typography>
           <div className='detail_line'/>
           <Typography variant="body2" gutterBottom>참여자 수</Typography>
           <Typography variant="body1" gutterBottom>1000명 참여</Typography>
           <div className='separate_line'/>
           <Typography sx={{ mt: 1 }}>- 응모 이후 수정은 불가합니다.</Typography>
           <Typography sx={{ mt: 1 }}>- 당첨 결과는 마이페이지에서 확인하실 수 있습니다.</Typography>
-          <Typography sx={{ mt: 1 }}>- 당첨 시, 카카오톡으로 안내 등이 발송됩니다. </Typography>
+          <Typography sx={{ mt: 1 }}>- 당첨 시, 문자로 안내 등이 발송됩니다. </Typography>
           <div className='detail_line'/>
           <button className='entry_btn'>응모하기</button>
+          <button className='disabled_btn' disabled={true}>응모완료</button>
         </CardContent>
       </Card>
     </div>

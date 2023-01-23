@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Marketplace.css';
-import bp from '../main/banner/blackpink.jpeg';
+import bp from '../main/banner/bp.png';
 import { Card, CardMedia, CardContent, Typography, Toolbar, CardActions } from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { BuyOnsaleModal } from './component/BuyOnsaleModal';

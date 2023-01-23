@@ -1,12 +1,11 @@
 import React from 'react'
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Toolbar } from '@mui/material';
 import './Mypage.css';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-
 import { CancelModal } from './component/CancelModal';
 import { SellModal } from './component/SellModal';
 import { BuyModal } from './component/BuyModal';
+import { QrModal } from './component/QrModal';
 
 export const Mypage = () => {
   return (
@@ -51,7 +50,7 @@ export const Mypage = () => {
                   <SellModal />
                 </TableCell>
                 <TableCell align='center'>
-                  <QrCode2Icon />
+                  <QrModal />
                 </TableCell>
               </TableRow>
             </TableBody>
