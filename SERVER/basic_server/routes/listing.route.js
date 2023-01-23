@@ -1,8 +1,9 @@
 const express = require('express');
-const controller = require('../controller/listing.controller')
 const router = express.Router();
 
+const { publicListing, whiteListing } = require('../controller/listing.controller')
+
 // http://localhost:5001/listing
-router.post("/publicListing", controller.publicListing);
-router.post("/privateListing", controller.whiteListing);
+router.post('/publicListing', publicListing);
+router.post('/privateListing', whiteListing);
 module.exports = router;
