@@ -66,7 +66,7 @@ export const mintingErc20 = async(to,amount) => {
   return result;
 }
 
-export const getString= async(title) => {
+export const getString= (title) => {
   return web3.utils.soliditySha3({type: 'string', value: title});
 }
 

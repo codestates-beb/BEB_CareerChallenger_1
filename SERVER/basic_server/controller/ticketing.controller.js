@@ -28,9 +28,10 @@ module.exports = {
   registerTicket: async (req, res) => {
     try {
       const { title, cost } = req.body;
+      console.log(cost);
       const tileTypeBytes = getString(title);
       if (cost.length < 18) {
-        cost = cost * 1e18;
+        return res.status(400).send(`error MESSAGE : check decimals`);
       }
       const result = await _registerTicket(tileTypeBytes, cost);
 
