@@ -3,7 +3,6 @@ import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import '../Mypage.css';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
-import concertimg from '../../detail/concertimg.gif';
 
 export const BuyModal = () => {
   const [open, setOpen] = useState(false);
@@ -13,6 +12,7 @@ export const BuyModal = () => {
   const handleClose = () => setOpen(false);
 
   const date = new Date();
+
   return (
     <div>
       <ArrowCircleRightOutlinedIcon onClick={handleOpen}/>
@@ -26,10 +26,7 @@ export const BuyModal = () => {
           <CardContent>
             <div className='modal_line'/>
             <h2 className='modal_title'>당첨 티켓 구매</h2>
-            <div className='modal_imgtext'>
-              <div className='modal_img'>
-                <img src = {concertimg} alt='concertimg'/>
-              </div>
+            <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
               <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Toolbar } from '@mui/material';
+import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import './Mypage.css';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { CancelModal } from './component/CancelModal';
@@ -7,7 +7,7 @@ import { SellModal } from './component/SellModal';
 import { BuyModal } from './component/BuyModal';
 import { QrModal } from './component/QrModal';
 import { UseContext } from "../User/UserContextProvider";
-import {getNFTList} from "../helper/web3";
+import { getNFTList } from "../helper/web3";
 
 export const Mypage = () => {
   const { user, setUsers } = useContext(UseContext);
