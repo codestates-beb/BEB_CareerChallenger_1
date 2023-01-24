@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import '../Mypage.css';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+
+import '../Mypage.css';
 
 export const BuyModal = () => {
   const [open, setOpen] = useState(false);

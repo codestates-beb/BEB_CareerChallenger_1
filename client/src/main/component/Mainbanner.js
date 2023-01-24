@@ -1,8 +1,8 @@
 import React from 'react'
 import Slider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import bp from '../banner/bp.png';
 import asp from '../banner/asp.png';
 import txt from '../banner/txt.png';
@@ -10,10 +10,8 @@ import st from '../banner/st.png';
 import iu from '../banner/iu.png';
 
 import { useNavigate } from 'react-router';
-export const Mainbanner = ({ concertinfo }) => {
+export const Mainbanner = () => {
   const navigate = useNavigate();
-
-  console.log(concertinfo)
 
   const bannerSettings = {
     dots: true,

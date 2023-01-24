@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Card, CardActionArea, CardMedia, CardContent, Typography, Box } from '@mui/material';
-import './Main.css';
-
 import { Toolbar } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+
+import './Main.css';
 import { Mainbanner } from './component/Mainbanner';
 
 export const Main = ({ concertinfo }) => {
@@ -46,7 +46,7 @@ export const Main = ({ concertinfo }) => {
                     <div className='main_card_line'></div>
                     <h3>KRW 130,000</h3>
                     <Typography variant="body2" color="text.secondary">
-                      응모인원 : 13000명
+                      추첨인원 : 1200명
                     </Typography>
                   </CardContent>
                 </CardActionArea>

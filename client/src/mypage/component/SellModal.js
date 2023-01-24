@@ -1,11 +1,13 @@
 import React, { useState, useContext} from 'react'
+
 import { Typography, Modal, Card, CardContent, Box, TextField, InputAdornment, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import '../Mypage.css';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+
 import { UseContext } from "../../User/UserContextProvider";
 import { publicListing, privateListing } from "../../api/listing";
+import '../Mypage.css';
 
 export const SellModal = (props) => {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,7 @@ export const SellModal = (props) => {
   
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
   const handleWhite = (e) => {
     if(e.target.checked) {
       setWhiteList(true)

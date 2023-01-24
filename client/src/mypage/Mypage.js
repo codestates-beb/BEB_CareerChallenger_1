@@ -1,18 +1,21 @@
 import React, { useState, useContext, useEffect } from "react";
+
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import './Mypage.css';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+
 import { CancelModal } from './component/CancelModal';
 import { SellModal } from './component/SellModal';
 import { BuyModal } from './component/BuyModal';
 import { QrModal } from './component/QrModal';
 import { UseContext } from "../User/UserContextProvider";
 import { getNFTList } from "../helper/web3";
+import './Mypage.css';
 
 export const Mypage = () => {
   const { user, setUsers } = useContext(UseContext);
   const [myNft,setMyNft] = useState([])
   const [tokenId, setTokenId] = useState('')
+
   useEffect(() => {
     try {
       const getNft = async() => {
@@ -35,6 +38,7 @@ export const Mypage = () => {
       alert(err)
     }
   },[])
+  
   return (
     <div className='mypage_container'>
       <Typography variant="h2" align='center' fontWeight={700}>Mypage</Typography>

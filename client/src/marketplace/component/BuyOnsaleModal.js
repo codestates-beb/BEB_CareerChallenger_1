@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import '../Marketplace.css';
-import concertimg from '../../detail/concertimg.gif';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import { publicPurchase, privatePurchase } from "../../api/purchase";
+
+import '../Marketplace.css';
+import { publicPurchase } from "../../api/purchase";
 
 export const BuyOnsaleModal = () => {
   const [open, setOpen] = useState(false);
@@ -27,10 +28,7 @@ export const BuyOnsaleModal = () => {
           <CardContent>
             <div className='modal_line'/>
             <h2 className='modal_title'>세일 티켓 구매</h2>
-            <div className='modal_imgtext'>
-              <div className='modal_img'>
-                <img src = {concertimg} alt='concertimg'/>
-              </div>
+            <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
               <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
             </div>

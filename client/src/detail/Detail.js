@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import { UseContext } from "../User/UserContextProvider";
-import "./Detail.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 import {
   Card,
   Typography,
@@ -9,14 +10,12 @@ import {
   Table,
   TableCell,
   Paper,
-  TableHead,
   TableRow,
-  TableBody,
   CardHeader,
-  rows,
-  Divider,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+
+import { UseContext } from "../User/UserContextProvider";
+import "./Detail.css";
 import {
   getString,
   isRegisterProduction,
@@ -24,12 +23,11 @@ import {
   entry,
 } from "../helper/web3";
 import { Loading } from "../component/Loading";
-import axios from "axios";
 import login from "../component/kakao_login_medium.png";
 
 export const Detail = ({ concertinfo }) => {
   const { id } = useParams();
-  const { user, setUsers } = useContext(UseContext);
+  const { user } = useContext(UseContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isRegister, setIsRegister] = useState(); // 콘서트 원가 설정 true/false
@@ -91,6 +89,7 @@ export const Detail = ({ concertinfo }) => {
       setIsLoading(false);
     }
   }, []);
+
   return (
     <div className="detail_container">
       {isLoading ? <Loading /> : <></>}

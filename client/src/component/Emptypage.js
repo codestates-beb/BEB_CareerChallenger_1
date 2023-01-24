@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { Alert, AlertTitle } from '@mui/material';
+
 import './Component.css';
 
 export const Emptypage = () => {

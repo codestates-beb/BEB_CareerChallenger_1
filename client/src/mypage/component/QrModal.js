@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Typography, Modal, Card, CardContent } from '@mui/material';
-import '../Mypage.css';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
 import QRCode from "react-qr-code";
+
+import { Typography, Modal, Card, CardContent } from '@mui/material';
+import QrCode2Icon from '@mui/icons-material/QrCode2';
+
+import '../Mypage.css';
 
 export const QrModal = () => {
   const [open, setOpen] = useState(false);

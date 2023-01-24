@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+
 import { Typography, Modal, Card, CardContent } from '@mui/material';
-import '../Mypage.css';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+
+import '../Mypage.css';
 
 export const CancelModal = () => {
   const [open, setOpen] = useState(false);
