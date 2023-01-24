@@ -15,7 +15,6 @@ module.exports = {
         console.log(req.body)
         console.log(cost)
         const account = web3.eth.accounts.wallet.add(process.env.NMEMONIC);
-        console.log(account.address)
     
         const contract = new web3.eth.Contract(
             abi,
@@ -42,7 +41,7 @@ module.exports = {
         const to = data.to;
         const tokenId = parseInt(data.tokenId);
         const cost = parseInt(data.cost);
-        
+        console.log(req.body)
         console.log(cost)
         
        

@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
 import { Typography, Modal, Card, CardContent, Box, TextField, InputAdornment, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import '../Mypage.css';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { UseContext } from "../../User/UserContextProvider";
 import { publicListing, privateListing } from "../../api/listing";
 
 export const SellModal = () => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { user, setUsers } = useContext(UseContext);
   const [whiteList, setWhiteList] = useState(false);
+  const [whiteListId, setWhiteListId] = useState('');
   const [cost, setCost] = useState({
     cost : 0
   });
@@ -62,7 +65,9 @@ export const SellModal = () => {
                 {whiteList ? 
                   <Box sx={{ display: 'flex', alignItems: 'flex-end', mr: 2.5 }}>
                     <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                    <TextField id="input" label="ID를 입력해주세요" variant="standard" />
+                    <TextField id="input" label="지갑 주소를 입력해주세요" variant="standard" onChange={
+                  (e) => {setWhiteListId(e.target.value)                  
+                }} />
                   </Box>
                 : <></>}
                 <TextField
@@ -88,11 +93,21 @@ export const SellModal = () => {
             <button 
             className='modal_btn'
             onClick={() => {
-              publicListing({
-                owner : "0x6DE9c88ECbAa488C63A50b6A516feA6aa7c2F23A",
-                tokenId : 2,
-                cost : cost
-              })  
+              if (whiteList === false){
+                publicListing({
+                  owner : user.address,
+                  tokenId : 2,
+                  cost : cost,
+                })  
+              } else {
+                privateListing({
+                  owner : user.address,
+                  tokenId : 2,
+                  to : whiteListId,
+                  cost : cost,
+                })  
+              }
+              
             }}
             >완 료</button>
           </CardContent >
