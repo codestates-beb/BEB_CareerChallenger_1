@@ -61,3 +61,16 @@
 	display: block;
 }
 
+.detailcontainer_line2 {
+  border-top: 5px solid #222;
+	width: 970px;
+	margin: 40px auto 30px ;
+	display: block;
+}
+
+.detail_kakao_btn {
+  border:none;
+  background-color: transparent; 
+  margin: auto;
+  display: block;
+}

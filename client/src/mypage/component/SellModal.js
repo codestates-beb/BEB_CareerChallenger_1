@@ -3,7 +3,6 @@ import { Typography, Modal, Card, CardContent, Box, TextField, InputAdornment, F
 import '../Mypage.css';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import concertimg from '../../detail/concertimg.gif';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { publicListing, privateListing } from "../../api/listing";
 
@@ -38,10 +37,7 @@ export const SellModal = () => {
           <CardContent>
             <div className='modal_line'/>
             <h2 className='modal_title'>내 티켓 판매하기</h2>
-            <div className='modal_imgtext'>
-              <div className='modal_img'>
-                <img src = {concertimg} alt='concertimg'/>
-              </div>
+            <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
               <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
             </div>
