@@ -7,7 +7,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { UseContext } from "../../User/UserContextProvider";
 import { publicListing, privateListing } from "../../api/listing";
 
-export const SellModal = () => {
+export const SellModal = (props) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { user, setUsers } = useContext(UseContext);
@@ -96,13 +96,13 @@ export const SellModal = () => {
               if (whiteList === false){
                 publicListing({
                   owner : user.address,
-                  tokenId : 2,
+                  tokenId : props.tokenId,
                   cost : cost,
                 })  
               } else {
                 privateListing({
                   owner : user.address,
-                  tokenId : 2,
+                  tokenId : props.tokenId,
                   to : whiteListId,
                   cost : cost,
                 })  
