@@ -9,8 +9,14 @@ import {
   Divider,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { getString, isRegisterProduction, isEnter ,entry } from "../helper/web3";
+import {
+  getString,
+  isRegisterProduction,
+  isEnter,
+  entry,
+} from "../helper/web3";
 import { Loading } from "../component/Loading";
+import axios from "axios";
 import login from "../component/kakao_login_medium.png";
 
 export const Detail = ({ concertinfo }) => {
@@ -21,33 +27,38 @@ export const Detail = ({ concertinfo }) => {
   const [isRegister, setIsRegister] = useState(); // 콘서트 원가 설정 true/false
   const [isEntered, setIsEntered] = useState(); // 유저 응모 상태 treu/false
   const [isLogin, setIsLogin] = useState(false); // 유저 응모 상태 treu/false
+  const [entryCount, setEntryCount] = useState();
 
   const loginHandler = () => {
     window.location.href =
       "https://kauth.kakao.com/oauth/authorize?client_id=408eb292ea89d448bfc9bc935126f27b&redirect_uri=http://localhost:5000/user/auth/kakao&response_type=code";
   };
 
-  const _entry = async() => {
+  const _entry = async () => {
     try {
-      setIsLoading(true)
-      const result = await entry(user.nickname,concertinfo[id - 1].title,user.address)
-      if(result.status) {
-        setIsEntered(true)
+      setIsLoading(true);
+      const result = await entry(
+        user.nickname,
+        concertinfo[id - 1].title,
+        user.address
+      );
+      if (result.status) {
+        setIsEntered(true);
       }
       setIsLoading(false);
     } catch (error) {
-      alert(error)
+      alert(error);
     }
-  }
-  useEffect(() => {
+  };
+
+  useEffect(async () => {
     try {
-      if(user.address !== "") {
-        setIsLogin(true)
+      if (user.address !== "") {
+        setIsLogin(true);
       }
       setIsLoading(true);
       const titleTypeBytes = getString(concertinfo[id - 1].title);
       const check = async () => {
-
         // 콘서트 원가 설정이 됬는지 확인
         const _isRegister = await isRegisterProduction(titleTypeBytes);
         setIsRegister(_isRegister);
@@ -58,6 +69,13 @@ export const Detail = ({ concertinfo }) => {
           setIsEntered(_isEnter);
         }
       };
+      const count = await axios.post(
+        "http://localhost:5000/nftpark/detailInfo",
+        {
+          title: concertinfo[id - 1].title,
+        }
+      );
+      setEntryCount(count.data.entryCount);
       check();
     } catch (error) {
       alert(error);
@@ -67,7 +85,7 @@ export const Detail = ({ concertinfo }) => {
   }, []);
   return (
     <div className="detail_container">
-      {isLoading ?<Loading/> :<></> }
+      {isLoading ? <Loading /> : <></>}
       <div className="detailcontainer_line" />
       <div className="detail_info">
         <img
@@ -120,7 +138,7 @@ export const Detail = ({ concertinfo }) => {
             참여자 수
           </Typography>
           <Typography variant="body1" gutterBottom>
-            1000명 참여
+            {entryCount}명 참여
           </Typography>
           <div className="separate_line" />
           <Typography sx={{ mt: 1 }}>- 응모 이후 수정은 불가합니다.</Typography>
@@ -131,21 +149,30 @@ export const Detail = ({ concertinfo }) => {
             - 당첨 시, 문자로 안내 등이 발송됩니다.{" "}
           </Typography>
           <div className="detail_line" />
-          {isLogin ? (isRegister ? (
-            isEntered ? (
-              <button className="disabled_btn" disabled={true}>
-                응모완료
-              </button>
+          {isLogin ? (
+            isRegister ? (
+              isEntered ? (
+                <button className="disabled_btn" disabled={true}>
+                  응모완료
+                </button>
+              ) : (
+                <button
+                  className="entry_btn"
+                  onClick={async () => await _entry()}
+                >
+                  응모하기
+                </button>
+              )
             ) : (
-              <button className="entry_btn" onClick={async() => await _entry()}>응모하기</button>
+              <button className="disabled_btn" disabled={true}>
+                응모 대기중
+              </button>
             )
           ) : (
-            <button className="disabled_btn" disabled={true}>
-              응모 대기중
+            <button className="kakao_btn" type="button" onClick={loginHandler}>
+              <img className="kakao_login" src={login} alt="kakao login" />
             </button>
-          )):<button className="kakao_btn" type="button" onClick={loginHandler}>
-          <img className="kakao_login" src={login} alt="kakao login" />
-        </button>}
+          )}
         </CardContent>
       </Card>
     </div>

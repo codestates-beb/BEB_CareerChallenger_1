@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { db } = require("../sequelize/models");
 const amqp = require("amqplib");
+const { redisCli } = require("../redis/redisconnection");
 const {
   _draw,
   _entry,
@@ -50,6 +51,8 @@ module.exports = {
       const { name, title, address } = req.body;
       // keccak256(encodePacked(티켓명 + 등급)) 잘못입력 시, 진행x
       const tileTypeBytes = getString(title);
+      console.log("tileTypeBytes = ", tileTypeBytes);
+      console.log("tile = ", title);
       const _isRegisterProduction = await isRegisterProduction(tileTypeBytes);
 
       // 스마트컨트렉트에 등록된 상품이 아니면 진행x
@@ -65,6 +68,7 @@ module.exports = {
         return res.status(404).send(`error MESSAGE : FALSE entry Transaction`);
       }
 
+      await redisCli.SADD(title, address);
       // applicant DB 데이터 저장 구현
       // table info : [id][name][address][title][time(default now)]
       const result = await db["applicant"].create({
