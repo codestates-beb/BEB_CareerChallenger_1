@@ -8,12 +8,13 @@ const {
   merkleTreeRoot,
   merkleTreeProof,
   canClaim,
+  _buyNFT,
+  airdrop
 } = require("../function/ticketing.function");
 const {
   isRegisterProduction,
   getString,
-  _registerTicket,
-  _buyNFT,
+  _registerTicket
 } = require("../function/parkErc721.function");
 
 //process.env.RPC_URL
@@ -85,47 +86,67 @@ module.exports = {
   // 추첨
   draw: async (req, res) => {
     try {
-      // const { title } = req.body
+      const { title } = req.body
 
       // // keccak256(encodePacked(티켓명 + 등급)) 잘못입력 시, 진행x
-      // const tileTypeBytes = getString(title);
-      // const isRegisterProduction = await isRegisterProduction(tileTypeBytes)
+      const tileTypeBytes = getString(title);
+      const _isRegisterProduction = await isRegisterProduction(tileTypeBytes)
 
-      // // 스마트컨트렉트에 등록된 상품이 아니면 진행x
-      // if(!isRegisterProduction) {
-      //     return res.status(400).send(`Unregistered Production`)
-      // }
+      // 스마트컨트렉트에 등록된 상품이 아니면 진행x
+      if(!_isRegisterProduction) {
+          return res.status(400).send(`Unregistered Production`)
+      }
 
+      console.log('당첨자 선별 중');
       const winner = _draw();
-
+      console.log('당첨자 선별 완료');
+      
       let data = [];
       let test = [];
-      let connection;
+      // let connection;
+      console.log('당첨자 저장 진행 중');
       try {
-        connection = await amqp.connect("amqp://localhost");
-        const queue = "NFTPARK";
-        const channel = await connection.createChannel();
-        await channel.assertQueue(queue, { durable: false });
+        // connection = await amqp.connect("amqp://localhost");
+        // const queue = "NFTPARK";
+        // const channel = await connection.createChannel();
+        // await channel.assertQueue(queue, { durable: false });
         winner.forEach(async (element) => {
-          data.push({ address: element, title: "IU 콘서트" });
-          test.push(Buffer.from(element + ","));
-          // await channel.sendToQueue(queue, Buffer.from(element));
-          // console.log(" [x] Sent '%s'", element);
+          data.push({ address: element, title: title});
+          // test.push(Buffer.from(element + ","));
         });
-        await channel.sendToQueue(queue, Buffer.concat(test));
-        console.log(" [x] Sent '%s'", test);
+        // await channel.sendToQueue(queue, Buffer.concat(test));
+        // console.log(" [x] Sent '%s'", test);
 
         await db.winners.bulkCreate(data);
-        await channel.close();
+        // await channel.close();
       } catch (err) {
         console.warn(err);
       } finally {
-        if (connection) await connection.close();
+        // if (connection) await connection.close();
       }
+      console.log('당첨자 저장 완료');
 
       // todo(SM) : 당첨자 리스트 MerkleTree Root Smart Contract에 저장
-
+      console.log('MerkleTree Root 생성 및 저장 중');
+      const root = merkleTreeRoot(winner)
+      await airdrop(tileTypeBytes,root)
+      console.log('MerkleTree Root 생성 및 저장 완료');
       return res.status(200).json({ winner: winner });
+    } catch (error) {
+      return res.status(404).send(`error MESSAGE : ${error}`);
+    }
+  },
+  getMyEntry: async (req, res) => {
+    try {
+      const { address } = req.body;
+      const myEntry = await db["applicant"].findAll({
+        attributes: ['address','title'],
+        where: {
+          address
+        },
+      });
+
+      return res.status(200).send(myEntry);
     } catch (error) {
       return res.status(404).send(`error MESSAGE : ${error}`);
     }
@@ -134,15 +155,16 @@ module.exports = {
   isWinner: async (req, res) => {
     try {
       const { title, address } = req.body;
-
       const winners = await db["winners"].findAll({
+        attributes: ['address'],
         where: {
-          title,
+          title
         },
       });
+      const _winners = winners.map((winner) => winner.dataValues.address)
 
       // typeof array
-      const proof = merkleTreeProof(winners, address);
+      const proof = merkleTreeProof(_winners, address);
       const tileTypeBytes = getString(title);
 
       const result = await canClaim(tileTypeBytes, address, proof);
@@ -156,13 +178,14 @@ module.exports = {
     try {
       const { title, to, url } = req.body;
       const winners = await db["winners"].findAll({
+        attributes: ['address'],
         where: {
-          title,
+          title
         },
       });
-
+      const _winners = winners.map((winner) => winner.dataValues.address)
       // typeof array
-      const proof = merkleTreeProof(winners, to);
+      const proof = merkleTreeProof(_winners, to);
       const tileTypeBytes = getString(title);
       await _buyNFT(tileTypeBytes, to, url, proof);
       return res.status(200).send("success but ticket");

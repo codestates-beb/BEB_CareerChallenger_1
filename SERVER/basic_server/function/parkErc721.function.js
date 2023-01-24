@@ -22,17 +22,6 @@ const contract = new web3.eth.Contract(
     return result;
 }
 
-// 티켓(NFT) 구매하기
-const _buyNFT = async(titleTypeBytes,to,url,merkleProof) => {
-  const transaction = {
-    from: account.address,
-    gas: 19000000,
-    gasPrice: await getGasPrice(),
-  };
-  const result = await contract.methods.buyNft(titleTypeBytes,to,url,merkleProof).send(transaction);
-  return result
-}
-
  const getProductionCost= async(title) => {
     return await contract.methods.getProductionCost(title).call();
 }
@@ -51,4 +40,4 @@ const _buyNFT = async(titleTypeBytes,to,url,merkleProof) => {
 const getGasPrice = async() => {
   return await web3.eth.getGasPrice()
 }
-module.exports = {isRegisterProduction,getString,_registerTicket,_buyNFT};
+module.exports = {isRegisterProduction,getString,_registerTicket};
