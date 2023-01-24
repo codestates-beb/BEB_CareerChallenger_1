@@ -20,7 +20,7 @@ contract Market is Ownable {
         }
 
     mapping (uint => address) _whiteList; // mapping 타입으로 바꾸기 (tokenid -> whitelist)
-    mapping (uint256 => MarketItem) public idMarketItem; //a way to access values of the MarketItem struct above by passing an integer ID
+    mapping (uint256 => MarketItem) private idMarketItem; //a way to access values of the MarketItem struct above by passing an integer ID
 
     struct MarketItem {
         uint itemId;
@@ -116,6 +116,10 @@ contract Market is Ownable {
 
     function publicPurchase(address owner, address to, uint256 tokenId, uint _cost) public {
         park.transferFrom(owner, to, tokenId);
+        
+        if(token.allowance(to, address(this)) < _cost) {
+            token.approvalProxy(to, address(this));
+        }
         token.transferFrom(to,owner,_cost);
 
         idMarketItem[tokenId].owner = payable(to); //mark buyer as new owner
@@ -127,7 +131,11 @@ contract Market is Ownable {
         require(_whiteList[tokenId]==to);
         park.transferFrom(owner, to, tokenId);
         delete _whiteList[tokenId];
-        token.transferFrom(to,owner,_cost);
+
+        if(token.allowance(to, address(this)) < _cost) {
+            token.approvalProxy(to, address(this));
+        }
+        token.transferFrom(owner, to, _cost);
 
         idMarketItem[tokenId].owner = payable(to); //mark buyer as new owner
         idMarketItem[tokenId].sold = true; //mark that it has been sold

@@ -9,7 +9,7 @@ router.post('/test',test);
 router.get('/draw',draw);
 
 // http://localhost:5001/ticketing/entry
-router.get('/entry',entry);
+router.post('/entry',entry);
 
 // http://localhost:5001/ticketing/registerTicket
 router.get('/registerTicket',registerTicket);

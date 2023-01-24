@@ -1,4 +1,4 @@
-const axios = require("axios")
+import axios from "axios"
 const Web3 = require("web3");
 const web3 = new Web3(
   `https://polygon-mumbai.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`
@@ -26,7 +26,7 @@ export const isEnter = async(titleTypeBytes,address) => {
 
 // 응모하기
 export const entry = async (name,title,address) => {
-  const result = await axios.get("http://localhost:5001/ticketing/entry",{
+  const result = await axios.post("http://localhost:5001/ticketing/entry",{
     name,
     title,
     address

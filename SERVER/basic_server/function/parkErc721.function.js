@@ -45,7 +45,7 @@ const _buyNFT = async(titleTypeBytes,to,url,merkleProof) => {
     return result;
 }
 
-  const getString= async(title) => {
+  const getString= (title) => {
     return web3.utils.soliditySha3({type: 'string', value: title});
 }
 const getGasPrice = async() => {
