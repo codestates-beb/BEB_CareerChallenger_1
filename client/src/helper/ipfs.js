@@ -1,5 +1,5 @@
+import { create } from "ipfs-http-client";
 const { Buffer } = require("buffer");
-const { create } = require("ipfs-http-client");
 
 const projectId = process.env.REACT_APP_PROJECTID;
 const projectSecret = process.env.REACT_APP_PROJECTSECRET;

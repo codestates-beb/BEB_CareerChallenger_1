@@ -1,5 +1,5 @@
 const express = require('express');
-const {test,draw,entry,registerTicket,isWinner,buyNFT} = require('../controller/ticketing.controller')
+const {test,draw,entry,registerTicket,isWinner,buyNFT,getMyEntry} = require('../controller/ticketing.controller')
 const router = express.Router();
 
 // http://localhost:5001/ticketing/test
@@ -14,11 +14,14 @@ router.post('/entry',entry);
 // http://localhost:5001/ticketing/registerTicket
 router.get('/registerTicket',registerTicket);
 
+// http://localhost:5001/ticketing/getMyEntry
+router.post('/getMyEntry',getMyEntry);
+
 // http://localhost:5001/ticketing/isWinner
-router.get('/isWinner',isWinner);
+router.post('/isWinner',isWinner);
 
 // http://localhost:5001/ticketing/buyNFT
-router.get('/buyNFT',buyNFT);
+router.post('/buyNFT',buyNFT);
 
 
 module.exports = router;

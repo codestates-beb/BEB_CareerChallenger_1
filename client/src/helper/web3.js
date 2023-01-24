@@ -35,9 +35,18 @@ export const entry = async (name,title,address) => {
   return result;
 }
 
+// 내 응모 내역 보기
+export const myEntry = async (address) => {
+  const result = await axios.post("http://localhost:5001/ticketing/getMyEntry",{
+    address
+  })
+
+  return result;
+}
+
 // 응모 당첨 여부 확인
 export const canClaim = async(title,address) => {
-  const result = await axios.get("http://localhost:5001/ticketing/isWinner",{
+  const result = await axios.post("http://localhost:5001/ticketing/isWinner",{
     title,
     address
   })
@@ -46,7 +55,7 @@ export const canClaim = async(title,address) => {
 
 // 티켓(NFT) 구매하기
 export const buyNFT = async(title,to,url) => {
-  const result = await axios.get("http://localhost:5001/ticketing/buyNFT",{
+  const result = await axios.post("http://localhost:5001/ticketing/buyNFT",{
     title,
     to,
     url
@@ -66,6 +75,17 @@ export const mintingErc20 = async(to,amount) => {
   return result;
 }
 
+// 환불기능(NFT 소각)
+export const refundticket= async(tokenId) => {
+    const transaction = {
+      from: account.address,
+      gas: 19000000,
+      gasPrice: await getGasPrice(),
+  };
+  const contract = new web3.eth.Contract(PARK_abi,process.env.REACT_APP_PARK_ERC721);
+  const result = await contract.methods.burn(tokenId).send(transaction);
+  return result;
+}
 export const getString= (title) => {
   return web3.utils.soliditySha3({type: 'string', value: title});
 }
