@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
         winnerNumbers.forEach((element) => {
           sns_data.push({
             to: `${element.dataValues.phone_number}`,
-            content: `${element.dataValues.nickname}님 아이유 콘서트에 당첨되셨습니다.`,
+            content: `${element.dataValues.nickname}님 콘서트에 당첨되셨습니다.`,
           });
         });
         send_message(sns_data);

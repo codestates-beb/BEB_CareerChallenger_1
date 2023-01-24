@@ -4,6 +4,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import '../Marketplace.css';
 import concertimg from '../../detail/concertimg.gif';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import { publicPurchase, privatePurchase } from "../../api/purchase";
 
 export const BuyOnsaleModal = () => {
   const [open, setOpen] = useState(false);
@@ -49,7 +50,17 @@ export const BuyOnsaleModal = () => {
               <Typography sx={{ mt: 1 }}>- 구매 진행 전, 반드시 주의 사항을 확인하시기 바랍니다.</Typography>
             </div>
             <div className='modal_line'/>
-            <button className='modal_btn'>구 매 하 기</button>
+            <button 
+            className='modal_btn'
+            onClick={() => {
+              publicPurchase({
+                owner : "0x6DE9c88ECbAa488C63A50b6A516feA6aa7c2F23A",
+                to : "0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755",
+                tokenId : 2,
+                cost : 5000
+              })  
+            }}
+            >구 매 하 기</button>
           </CardContent >
         </Card>
       </Modal>

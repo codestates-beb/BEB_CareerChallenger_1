@@ -3,6 +3,28 @@ const jwt = require("jsonwebtoken");
 const { jwtVerify } = require("../data/jwt");
 require("dotenv").config();
 
+exports.detailMiddleware = async (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    if (token) {
+      req.userInfo = jwtVerify(token);
+    }
+    return next();
+  } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      res.clearCookie("token");
+      return res.status(419).send("토큰 만료");
+    }
+    if (err.name === "JsonWebTokenError") {
+      res.clearCookie("token");
+      return res.status(401).send("유효하지 않은 토큰");
+    } else {
+      console.log(err);
+      return res.status(400).send("에러메세지");
+    }
+  }
+};
+
 exports.authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
   try {

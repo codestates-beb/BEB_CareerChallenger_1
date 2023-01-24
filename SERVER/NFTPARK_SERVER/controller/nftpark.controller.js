@@ -27,3 +27,20 @@ exports.ticketInfo = async (req, res) => {
     res.send("오류");
   }
 };
+
+exports.detailInfo = async (req, res) => {
+  let data = req.body.title;
+  const userInfo = req.userInfo;
+  try {
+    let checkEntry, entryCount;
+    if (userInfo) {
+      checkEntry = await redisCli.SISMEMBER(data, userInfo.address);
+    }
+    entryCount = await redisCli.SCARD(data);
+    res.json({ checkEntry: checkEntry, entryCount: entryCount });
+  } catch (err) {
+    res.send("오류");
+  }
+};
+
+// await redisCli.SADD(title,address)
