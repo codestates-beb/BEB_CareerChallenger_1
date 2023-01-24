@@ -12,6 +12,7 @@ import { getNFTList } from "../helper/web3";
 export const Mypage = () => {
   const { user, setUsers } = useContext(UseContext);
   const [myNft,setMyNft] = useState([])
+  const [tokenId, setTokenId] = useState('')
   useEffect(() => {
     try {
       const getNft = async() => {
@@ -75,7 +76,7 @@ export const Mypage = () => {
                   <CancelModal/>
                 </TableCell>
                 <TableCell align='center'>
-                  <SellModal />
+                  <SellModal tokenId={tokenId} />
                 </TableCell>
                 <TableCell align='center'>
                   <QrModal />
