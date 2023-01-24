@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
-import { Typography, Modal, Card, CardContent, TextField, InputAdornment } from '@mui/material';
+import { Typography, Modal, Card, CardContent, Box, TextField, InputAdornment, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import '../Mypage.css';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import concertimg from '../../detail/concertimg.gif';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export const SellModal = () => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [whiteList, setWhiteList] = useState(false);
   
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const handleWhite = (e) => {
+    if(e.target.checked) {
+      setWhiteList(true)
+    } else {
+      setWhiteList(false)
+    }
+  }
+  
   return (
     <div>
       <ConfirmationNumberIcon onClick={handleOpen}/> 
@@ -21,7 +30,7 @@ export const SellModal = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Card className='mypage_modal' sx={{ maxWidth: 500 }}>
+        <Card className='mypage_modal' sx={{ maxWidth: 512 }}>
           <CardContent>
             <div className='modal_line'/>
             <h2 className='modal_title'>내 티켓 판매하기</h2>
@@ -34,7 +43,7 @@ export const SellModal = () => {
             </div>
             <div className='modal_info'>
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보</Typography>
-              <div className='ticketinfo_box'>
+              <div className='sellticketinfo_box'>
                 <Typography>토큰ID | 23454353</Typography>
                 <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27 14:00 1회</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
@@ -42,7 +51,21 @@ export const SellModal = () => {
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
                 <Typography sx={{ mt: 1 }}>구매 금액 | 130,000원</Typography>
               </div>
-              <TextField
+              <FormControlLabel
+                value="end"
+                control={<Checkbox />}
+                label="화이트리스트 판매를 원하시면 왼쪽 체크박스를 눌러주세요"
+                labelPlacement="end"
+                onClick={handleWhite}
+              />
+              <FormGroup row>
+                {whiteList ? 
+                  <Box sx={{ display: 'flex', alignItems: 'flex-end', mr: 2.5 }}>
+                    <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                    <TextField id="input" label="ID를 입력해주세요" variant="standard" />
+                  </Box>
+                : <></>}
+                <TextField
                 id="modal_price"
                 label="희망 가격"
                 type="number"
@@ -51,6 +74,7 @@ export const SellModal = () => {
                   endAdornment: <InputAdornment position="end">원</InputAdornment>,
                 }}
               />
+              </FormGroup>
               <div className='modal_line2'/>
               <ErrorOutlineIcon color="error"/>
               <Typography sx={{ mt: 1 }}>- 희망 가격은 구매 가격을 초과할 수 없습니다.</Typography>
