@@ -2,10 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import { UseContext } from "../User/UserContextProvider";
 import "./Detail.css";
 import {
-  Card,
-  Typography,
-  CardContent,
-  CardHeader,
+  Card, Typography,
+  CardContent, TableContainer, Table, TableCell, Paper, TableHead, TableRow, TableBody,
+  CardHeader, rows,
   Divider,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -75,26 +74,26 @@ export const Detail = ({ concertinfo }) => {
           alt="concertimg"
           className="detailimg"
         />
-        <Card sx={{ width: 370, m: 2 }}>
-          <CardContent>
-            <Divider textAlign="left">장소</Divider>
-            <Typography className="text_info" align="center">
-              {concertinfo[id - 1].place}
-            </Typography>
-            <Divider textAlign="left">공연날짜</Divider>
-            <Typography className="text_info" align="center">
-              {concertinfo[id - 1].performancePeriod}
-            </Typography>
-            <Divider textAlign="left">출연진</Divider>
-            <Typography className="text_info" align="center">
-              {concertinfo[id - 1].singer_name}
-            </Typography>
-            <Divider textAlign="left">관람연령</Divider>
-            <Typography className="text_info" align="center">
-              만 {concertinfo[id - 1].ageLimit}세이상
-            </Typography>
-          </CardContent>
-        </Card>
+        <TableContainer component={Paper} sx={{ width: 370, m:2 }}>
+          <Table>
+            <TableRow>
+              <TableCell align="center">장소</TableCell>
+              <TableCell align="left">{concertinfo[id - 1].place}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="center">공연날짜</TableCell>
+              <TableCell align="left">{concertinfo[id - 1].performancePeriod}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="center">출연진</TableCell>
+              <TableCell align="left">{concertinfo[id - 1].singer_name}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="center">관람연령</TableCell>
+              <TableCell align="left">만 {concertinfo[id - 1].ageLimit}세이상</TableCell>
+            </TableRow>
+          </Table>
+        </TableContainer>
       </div>
       <Card sx={{ width: 480 }}>
         <CardHeader title={concertinfo[id - 1].title} />
@@ -128,8 +127,9 @@ export const Detail = ({ concertinfo }) => {
             - 당첨 결과는 마이페이지에서 확인하실 수 있습니다.
           </Typography>
           <Typography sx={{ mt: 1 }}>
-            - 당첨 시, 문자로 안내 등이 발송됩니다.{" "}
+            - 당첨 시, 문자로 발송됩니다.{" "}
           </Typography>
+          <Typography sx={{ mt: 1 }}>- 로그인 후, 응모가 가능합니다.</Typography>
           <div className="detail_line" />
           {isLogin ? (isRegister ? (
             isEntered ? (
@@ -143,11 +143,12 @@ export const Detail = ({ concertinfo }) => {
             <button className="disabled_btn" disabled={true}>
               응모 대기중
             </button>
-          )):<button className="kakao_btn" type="button" onClick={loginHandler}>
+          )):<button className="detail_kakao_btn" type="button" onClick={loginHandler}>
           <img className="kakao_login" src={login} alt="kakao login" />
         </button>}
         </CardContent>
       </Card>
+      <div className='detailcontainer_line2'/>
     </div>
   );
 };

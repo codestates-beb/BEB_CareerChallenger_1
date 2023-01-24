@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import '../Mypage.css';
-import concertimg from '../../detail/concertimg.gif';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
@@ -25,10 +24,7 @@ export const CancelModal = () => {
           <CardContent>
             <div className='modal_line'/>
             <h2 className='modal_title'>티켓 예매 상세내역</h2>
-            <div className='modal_imgtext'>
-              <div className='modal_img'>
-                <img src = {concertimg} alt='concertimg'/>
-              </div>
+            <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
               <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
             </div>

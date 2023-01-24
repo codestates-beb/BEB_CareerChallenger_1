@@ -3,7 +3,6 @@ import { Typography, Modal, Card, CardContent } from '@mui/material';
 import '../Mypage.css';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import QRCode from "react-qr-code";
-import concertimg from '../../detail/concertimg.gif';
 
 export const QrModal = () => {
   const [open, setOpen] = useState(false);
@@ -23,10 +22,7 @@ export const QrModal = () => {
           <CardContent>
           <div className='modal_line'/>
             <h2 className='modal_title'>입장 QR</h2>
-            <div className='modal_imgtext'>
-              <div className='modal_img'>
-                <img src = {concertimg} alt='concertimg'/>
-              </div>
+            <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
               <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
             </div>

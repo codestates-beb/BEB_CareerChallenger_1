@@ -10,7 +10,7 @@ export const Onsale = () => {
   return (
     <div>
       <Typography variant="h4" fontWeight={700} sx={{ m:3 }}>On Sale</Typography>
-      <div className='marketplacecard_container'>
+      <div className='onsalecard_container'>
         <Card sx={{ width: 298, height: 300 }} >
           <CardMedia
             component="img"

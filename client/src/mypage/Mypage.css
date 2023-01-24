@@ -59,19 +59,8 @@
   width: 395px;
 }
 
-.modal_imgtext {
-  height: 120px;
-  margin-left: 40px;
-  margin-right: 40px;
-}
-
-.modal_img {
-  width: 25%;
-  float: left;
-}
-
-.modal_img img {
-  width: 80px;
+.modal_text {
+  padding: 0 30px;
 }
 
 .modal_text1 {
