@@ -30,14 +30,10 @@ exports.ticketInfo = async (req, res) => {
 
 exports.detailInfo = async (req, res) => {
   let data = req.body.title;
-  const userInfo = req.userInfo;
   try {
-    let checkEntry, entryCount;
-    if (userInfo) {
-      checkEntry = await redisCli.SISMEMBER(data, userInfo.address);
-    }
+    let entryCount;
     entryCount = await redisCli.SCARD(data);
-    res.json({ checkEntry: checkEntry, entryCount: entryCount });
+    res.json({ entryCount: entryCount });
   } catch (err) {
     res.send("오류");
   }
