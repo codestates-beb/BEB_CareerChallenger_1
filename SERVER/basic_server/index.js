@@ -11,9 +11,12 @@ app.use(
   cookieParser()
 );
 const ticketingRouter = require('./routes/ticketing.route')
-
+const listingRouter = require('./routes/listing.route')
+const purchaseRouter = require('./routes/purchase.route')
 
 app.use('/ticketing', ticketingRouter);
+app.use('/listing', listingRouter);
+app.use('/purchase', purchaseRouter);
 
 app.listen(port, () => {
   console.log(port, "서버실행");
