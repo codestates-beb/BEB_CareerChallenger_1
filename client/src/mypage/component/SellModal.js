@@ -70,7 +70,7 @@ export const SellModal = () => {
             onClick={() => {
               publicListing({
                 owner : "0x6DE9c88ECbAa488C63A50b6A516feA6aa7c2F23A",
-                tokenId : 0,
+                tokenId : 2,
                 cost : cost
               })  
             }}
