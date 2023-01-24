@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from "react";
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Toolbar } from '@mui/material';
 import './Mypage.css';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
@@ -6,8 +6,34 @@ import { CancelModal } from './component/CancelModal';
 import { SellModal } from './component/SellModal';
 import { BuyModal } from './component/BuyModal';
 import { QrModal } from './component/QrModal';
+import { UseContext } from "../User/UserContextProvider";
+import {getNFTList} from "../helper/web3";
 
 export const Mypage = () => {
+  const { user, setUsers } = useContext(UseContext);
+  const [myNft,setMyNft] = useState([])
+  useEffect(() => {
+    try {
+      const getNft = async() => {
+        const result = await getNFTList(user.address);
+        const arr = result.ownedNfts.map((data) => {
+          const rawData = {
+            id : data.tokenId,
+            name: data.rawMetadata.name,
+            description: data.rawMetadata.description,
+            image: data.rawMetadata.image,
+            attributes: data.rawMetadata.attributes
+          }
+          return rawData;
+        })
+        setMyNft(arr)
+        console.log(arr);
+      }
+      getNft();
+    } catch(err) {
+      alert(err)
+    }
+  },[])
   return (
     <div className='mypage_container'>
       <Typography variant="h2" align='center' fontWeight={700}>Mypage</Typography>
@@ -39,6 +65,8 @@ export const Mypage = () => {
               </TableRow>
             </TableHead>
             <TableBody>
+            {myNft.map(() => {
+              return (<>
               <TableRow>
                 <TableCell align='center'>2023.01.12</TableCell>
                 <TableCell align='center'>BlackPink concert</TableCell>
@@ -53,6 +81,8 @@ export const Mypage = () => {
                   <QrModal />
                 </TableCell>
               </TableRow>
+            </>)              
+            })}
             </TableBody>
           </Table>
         </TableContainer>

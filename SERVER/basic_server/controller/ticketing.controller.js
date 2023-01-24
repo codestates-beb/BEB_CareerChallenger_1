@@ -30,8 +30,9 @@ module.exports = {
       const { title, cost } = req.body;
       const tileTypeBytes = getString(title);
       if (cost.length < 18) {
-        cost = cost * 1e18;
+        return res.status(400).send(`error MESSAGE : check decimals`);
       }
+      console.log(tileTypeBytes);
       const result = await _registerTicket(tileTypeBytes, cost);
 
       // false tx
