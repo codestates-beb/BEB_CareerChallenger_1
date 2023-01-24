@@ -55,8 +55,9 @@ export const BuyOnsaleModal = () => {
             onClick={() => {
               publicPurchase({
                 owner : "0x6DE9c88ECbAa488C63A50b6A516feA6aa7c2F23A",
-                tokenId : 0,
-                cost : 300
+                to : "0x7842eBB02dAC50D732B0d337c8D9a92ade5cF755",
+                tokenId : 2,
+                cost : 5000
               })  
             }}
             >구 매 하 기</button>
