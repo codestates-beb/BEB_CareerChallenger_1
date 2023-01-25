@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import { buyNFT, mintingErc20 } from '../../helper/web3';
+import { createIPFS } from '../../helper/ipfs';
+import { Loading } from '../../component/Loading';
 
 import '../Mypage.css';
 
-export const BuyModal = () => {
+export const BuyModal = (props) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -14,6 +17,24 @@ export const BuyModal = () => {
   const handleClose = () => setOpen(false);
 
   const date = new Date();
+
+  const buyTicket = async() => {
+    try {
+      props.LoadingTrue()
+      console.log("minting 진행중");
+      await mintingErc20(props.address,"130000000000000000000000");
+      console.log("minting 진행 완료");
+      const url = await createIPFS(props.title,`NFT PARK ${props.title} 콘서트 티켓`,"","130000000000000000000000")
+      console.log(`IPFS ULR : ${url}`);
+      console.log("NFT Mintinf 진행중");
+      await buyNFT(props.title,props.address,url)
+      console.log("NFT Mintinf 진행 완료!");
+    } catch (error) {
+      alert(error)
+    } finally {
+      props.LoadingFalse()
+    }
+  }
 
   return (
     <div>
@@ -30,7 +51,7 @@ export const BuyModal = () => {
             <h2 className='modal_title'>당첨 티켓 구매</h2>
             <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
+              <Typography variant="h6" sx={{ mt: 1 }}>{props.title}</Typography>
             </div>
             <div className='modal_info'>
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보 확인</Typography>
@@ -48,7 +69,7 @@ export const BuyModal = () => {
               <Typography sx={{ mt: 1 }}>- 구매 진행 전, 반드시 주의 사항을 확인하시기 바랍니다.</Typography>
             </div>
             <div className='modal_line'/>
-            <button className='modal_btn'>구 매 하 기</button>
+            <button className='modal_btn' onClick={buyTicket}>구 매 하 기</button>
           </CardContent >
         </Card>
       </Modal>

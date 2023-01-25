@@ -45,12 +45,12 @@ export const SellModal = (props) => {
             <h2 className='modal_title'>내 티켓 판매하기</h2>
             <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
+              <Typography variant="h6" sx={{ mt: 1 }}>{props.name}</Typography>
             </div>
             <div className='modal_info'>
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보</Typography>
               <div className='sellticketinfo_box'>
-                <Typography>토큰ID | 23454353</Typography>
+                <Typography>토큰ID | {props.tokenId}</Typography>
                 <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27 14:00 1회</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
                 <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>

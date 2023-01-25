@@ -18,7 +18,7 @@ const web3 = new Web3(
 );
 const { MerkleTree } = require("merkletreejs");
 const keccak256 = require("keccak256");
-
+const { randomBytes } = require("crypto");
 const { abi } = require("../ABI/Ticketing.json");
 
 const account = web3.eth.accounts.wallet.add(process.env.NMEMONIC);
@@ -38,33 +38,56 @@ const _entry = async (applicant, titleTypeBytes) => {
   return result;
 };
 
+// 티켓(NFT) 구매하기
+const _buyNFT = async (titleTypeBytes, to, url, merkleProof) => {
+  const transaction = {
+    from: account.address,
+    gas: 19000000,
+    gasPrice: await getGasPrice(),
+  };
+  const result = await contract.methods
+    .buyNft(titleTypeBytes, to, url, merkleProof)
+    .send(transaction);
+  return result;
+};
+
 const _draw = () => {
   // todo : 블록체인 네트워크에서 응모리스트 불러오기(event)
 
   // Example : 응모된 50개 계정 중, 10개 계정 당첨 시나리오
-  // const addressList = new Array(50)
-  // .fill(0)
-  // .map(() =>  web3.eth.accounts.wallet.add(randomBytes(32).toString("hex")).address)
+  const addressList = new Array(50)
+    .fill(0)
+    .map(
+      () =>
+        web3.eth.accounts.wallet.add(randomBytes(32).toString("hex")).address
+    );
 
-  // const winner = [];
-  // // 10명 무작위 추천(중복x)
-  // let i = 0;
-  // while (i < 9) {
-  //   let n = Math.floor(Math.random() * addressList.length);
-  //   if (! sameNum(addressList[n])) {
-  //     winner.push(addressList[n]);
-  //     i++;
-  //   }
-  // }
-  // function sameNum (n) {
-  //   return winner.find((e) => (e === n));
-  // }
+  const winner = [];
+  // 10명 무작위 추천(중복x)
+  let i = 0;
+  while (i < 6) {
+    let n = Math.floor(Math.random() * addressList.length);
+    if (!sameNum(addressList[n])) {
+      winner.push(addressList[n]);
+      i++;
+    }
+  }
+  function sameNum(n) {
+    return winner.find((e) => e === n);
+  }
 
-  // const testAddress = "0x272A27Cf346F28183D544784eBe450Fa16B5b77F"
-  // winner.push(testAddress)
+  const testAddress = [
+    "0x6DE9c88ECbAa488C63A50b6A516feA6aa7c2F23A",
+    "0xCDe2eF0345025e6A6a221B8a62cd5830B93636C7",
+    "0x2eCc77C489e0E3c24A2D53cabC852E20A4A4A88f",
+    "0xD871b2086E0e45E603A9F7D6013Ec9E7E5a7eb93",
+  ];
 
-  // return winner;
-  return testWinner;
+  testAddress.map((address) => {
+    winner.push(address)
+  })
+
+  return winner;
 };
 
 // 응모 당첨 여부 확인
@@ -72,6 +95,20 @@ const canClaim = async (titleTypeBytes, address, merkleProof) => {
   const result = await contract.methods
     .canClaim(titleTypeBytes, address, merkleProof)
     .call();
+
+  return result;
+};
+
+// 당첨자 리스트 Airdrop
+const airdrop = async (titleTypeBytes, merkleProof) => {
+  const transaction = {
+    from: account.address,
+    gas: 19000000,
+    gasPrice: await getGasPrice(),
+  };
+  const result = await contract.methods
+    .airdrop(titleTypeBytes,merkleProof)
+    .send(transaction);
 
   return result;
 };
@@ -95,4 +132,13 @@ const merkleTreeRoot = (list) => {
 const merkleTreeProof = (list, address) => {
   return merkleTree(list).getHexProof(keccak256(address));
 };
-module.exports = { _entry, _draw, merkleTreeRoot, merkleTreeProof, canClaim };
+
+module.exports = {
+  _buyNFT,
+  _entry,
+  _draw,
+  merkleTreeRoot,
+  merkleTreeProof,
+  canClaim,
+  airdrop
+};
