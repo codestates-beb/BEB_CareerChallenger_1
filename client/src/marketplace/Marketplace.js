@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
+
 import { Emptypage } from '../component/Emptypage';
 import { Tabs } from './component/Tabs';
 import { Onsale } from './Onsale';

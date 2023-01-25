@@ -1,8 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
+
+import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
 
 import './Marketplace.css';
-import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
-import { useNavigate } from 'react-router';
 
 export const Upcoming = ({ concertinfo }) => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const Upcoming = ({ concertinfo }) => {
                     <div className='upcoming_card_line'></div>
                     <h3>KRW 130,000</h3>
                     <Typography variant="body2" color="text.secondary">
-                      응모인원 : 13000명
+                      추첨인원 : 1200명
                     </Typography>
                   </CardContent>
                 </CardActionArea>

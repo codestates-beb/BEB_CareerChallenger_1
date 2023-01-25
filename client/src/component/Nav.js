@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import { Box, Toolbar, Avatar } from "@mui/material";
+
 import Logo from "./logo.png";
 import login from "./kakao_login_medium.png";
 import { UseContext } from "../User/UserContextProvider";
-import axios from "axios";
 import "./Component.css";
 
 const loginHandler = () => {
@@ -14,8 +16,7 @@ const loginHandler = () => {
 
 const Nav = () => {
   const { user, setUsers } = useContext(UseContext);
-  console.log(user);
-  console.log(user.id)
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const name = params.get("login");

@@ -1,11 +1,13 @@
 import React, { useState, useContext} from 'react'
+
 import { Typography, Modal, Card, CardContent, Box, TextField, InputAdornment, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import '../Mypage.css';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+
 import { UseContext } from "../../User/UserContextProvider";
 import { publicListing, privateListing } from "../../api/listing";
+import '../Mypage.css';
 
 export const SellModal = (props) => {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,7 @@ export const SellModal = (props) => {
   
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
   const handleWhite = (e) => {
     if(e.target.checked) {
       setWhiteList(true)
@@ -48,9 +51,9 @@ export const SellModal = (props) => {
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보</Typography>
               <div className='sellticketinfo_box'>
                 <Typography>토큰ID | {props.tokenId}</Typography>
-                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27 14:00 1회</Typography>
+                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
-                <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
+                <Typography sx={{ mt: 1 }}>예매자명 | {user.nickname}</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
                 <Typography sx={{ mt: 1 }}>구매 금액 | 130,000원</Typography>
               </div>

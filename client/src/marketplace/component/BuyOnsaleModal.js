@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import '../Marketplace.css';
-import concertimg from '../../detail/concertimg.gif';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import { publicPurchase, privatePurchase } from "../../api/purchase";
+
+import { UseContext } from "../../User/UserContextProvider";
+import '../Marketplace.css';
+import { publicPurchase } from "../../api/purchase";
 
 export const BuyOnsaleModal = () => {
   const [open, setOpen] = useState(false);
+  const { user, setUsers } = useContext(UseContext);
   const [isLoading, setIsLoading] = useState(false);
   
   const handleOpen = () => setOpen(true);
@@ -27,10 +30,7 @@ export const BuyOnsaleModal = () => {
           <CardContent>
             <div className='modal_line'/>
             <h2 className='modal_title'>세일 티켓 구매</h2>
-            <div className='modal_imgtext'>
-              <div className='modal_img'>
-                <img src = {concertimg} alt='concertimg'/>
-              </div>
+            <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
               <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
             </div>
@@ -39,7 +39,7 @@ export const BuyOnsaleModal = () => {
               <div className='ticketinfo_box'>
                 <Typography>관람일시 | 2023.01.27 </Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | {date.getFullYear()}.{date.getMonth() + 1}.{date.getDate()}</Typography>
-                <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
+                <Typography sx={{ mt: 1 }}>예매자명 | {user.nickname}</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
               </div>
               <Typography variant="h6" sx={{ mt: 2 }}>결제 금액 | KRW 130,000</Typography>

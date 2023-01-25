@@ -1,7 +1,9 @@
 import React from 'react'
-import { Toolbar } from '@mui/material';
-import '../Marketplace.css';
 import { Link } from 'react-router-dom';
+
+import { Toolbar } from '@mui/material';
+
+import '../Marketplace.css';
 
 export const Tabs = () => {
   return (
