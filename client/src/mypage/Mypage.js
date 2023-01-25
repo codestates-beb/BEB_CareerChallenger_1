@@ -12,7 +12,7 @@ import { getNFTList,myEntry,canClaim } from "../helper/web3";
 import { Loading } from "../component/Loading";
 
 export const Mypage = () => {
-  const { user, setUsers } = useContext(UseContext);
+  const { user } = useContext(UseContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const [myNft,setMyNft] = useState([])
@@ -77,7 +77,7 @@ export const Mypage = () => {
       <div className='mypage_line'/>
       <div className='mypage_content'>
         <h2>구매내역 확인 & 취소</h2>
-        <TableContainer component={Paper} sx={{ width: 750 }}>
+        <TableContainer component={Paper} sx={{ width: 900 }}>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -107,7 +107,7 @@ export const Mypage = () => {
               <TableRow key={index}>
                 <TableCell align='center'>2023.01.12</TableCell>
                 <TableCell align='center'>{data.name}</TableCell>
-                <TableCell align='center'>2023.01.27 / 2</TableCell>
+                <TableCell align='center'>2023.01.27</TableCell>
                 <TableCell align='center'>
                   <CancelModal LoadingFalse={LoadingFalse} LoadingTrue={LoadingTrue} tokenId={data.id} name={data.name}/>
                 </TableCell>
@@ -115,7 +115,7 @@ export const Mypage = () => {
                   <SellModal LoadingFalse={LoadingFalse} LoadingTrue={LoadingTrue} tokenId={data.id} name={data.name} />
                 </TableCell>
                 <TableCell align='center'>
-                  <QrModal />
+                  <QrModal tokenId={data.id} name={data.name}/>
                 </TableCell>
               </TableRow>
             </>)              
@@ -124,7 +124,7 @@ export const Mypage = () => {
           </Table>
         </TableContainer>
         <h2 className='nftlist'>THE NFT 응모 내역</h2>
-        <TableContainer component={Paper} sx={{ width: 1100 }}>
+        <TableContainer component={Paper} sx={{ width: 1200 }}>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>

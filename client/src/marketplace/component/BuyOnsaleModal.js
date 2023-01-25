@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 
+import { UseContext } from "../../User/UserContextProvider";
 import '../Marketplace.css';
 import { publicPurchase } from "../../api/purchase";
 
 export const BuyOnsaleModal = () => {
   const [open, setOpen] = useState(false);
+  const { user, setUsers } = useContext(UseContext);
   const [isLoading, setIsLoading] = useState(false);
   
   const handleOpen = () => setOpen(true);
@@ -37,7 +39,7 @@ export const BuyOnsaleModal = () => {
               <div className='ticketinfo_box'>
                 <Typography>관람일시 | 2023.01.27 </Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | {date.getFullYear()}.{date.getMonth() + 1}.{date.getDate()}</Typography>
-                <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
+                <Typography sx={{ mt: 1 }}>예매자명 | {user.nickname}</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
               </div>
               <Typography variant="h6" sx={{ mt: 2 }}>결제 금액 | KRW 130,000</Typography>

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import QRCode from "react-qr-code";
 
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
+import { UseContext } from "../../User/UserContextProvider";
 
 import '../Mypage.css';
 
-export const QrModal = () => {
+export const QrModal = (props) => {
+  const { user } = useContext(UseContext);
   const [open, setOpen] = useState(false);
   
   const handleOpen = () => setOpen(true);
@@ -26,15 +28,15 @@ export const QrModal = () => {
             <h2 className='modal_title'>입장 QR</h2>
             <div className='modal_text'>
               <Typography className='modal_text1'>CONCERT</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>CRUSH ON YOU TOUR ［CRUSH HOUR］ ENCORE</Typography>
+              <Typography variant="h6" sx={{ mt: 1 }}>{props.name}</Typography>
             </div>
             <div className='modal_info'>
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보</Typography>
               <div className='ticketinfo_box'>
-                <Typography>토큰ID | 23454353</Typography>
-                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27 14:00 1회</Typography>
+                <Typography>토큰ID | {props.tokenId}</Typography>
+                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
-                <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
+                <Typography sx={{ mt: 1 }}>예매자명 | {user.nickname}</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
                 <Typography sx={{ mt: 1 }}>결제 금액 | 130,000원</Typography>
               </div>

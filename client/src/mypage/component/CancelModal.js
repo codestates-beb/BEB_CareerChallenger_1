@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { Typography, Modal, Card, CardContent } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { refundticket } from '../../helper/web3';
 import { Loading } from '../../component/Loading';
+import { UseContext } from "../../User/UserContextProvider";
 
 import '../Mypage.css';
 
 export const CancelModal = (props) => {
+  const { user, setUsers } = useContext(UseContext);
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -45,9 +47,9 @@ export const CancelModal = (props) => {
               <Typography variant="h6" sx={{ mt: 2 }}>티켓 정보</Typography>
               <div className='ticketinfo_box'>
                 <Typography>토큰ID | {props.tokenId}</Typography>
-                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27 14:00 1회</Typography>
+                <Typography sx={{ mt: 1 }}>관람일시 | 2023.01.27</Typography>
                 <Typography sx={{ mt: 1 }}>예매일 | 2023.01.20</Typography>
-                <Typography sx={{ mt: 1 }}>예매자명 | 홍길동</Typography>
+                <Typography sx={{ mt: 1 }}>예매자명 | {user.nickname}</Typography>
                 <Typography sx={{ mt: 1 }}>좌석 | VIP석</Typography>
                 <Typography sx={{ mt: 1 }}>결제 금액 | 130,000원</Typography>
               </div>
