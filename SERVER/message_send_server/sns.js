@@ -50,7 +50,7 @@ const send_message = async (message_data) => {
       }
     );
   } catch (err) {
-    console.log(err);
+    console.log(err, "sns.js 에러");
   }
 };
 

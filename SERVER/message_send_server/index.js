@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
     await channel.consume(
       queue,
       async (message) => {
+        console.log("메세지 읽는중 =======================");
         let address_data = message.content.toString().split(",").slice(0, -1);
         let sns_data = [];
         const winnerNumbers = await db.user.findAll({
@@ -48,12 +49,12 @@ app.get("/", (req, res) => {
             content: `${element.dataValues.nickname}님 콘서트에 당첨되셨습니다.`,
           });
         });
-        send_message(sns_data);
+        // send_message(sns_data);
         channel.ack(message);
+        console.log("메세지 읽음 =======================");
       },
       { noAck: false }
     );
-
     console.log(" [*] Waiting for messages. To exit press CTRL+C");
   } catch (err) {
     console.log(err);
