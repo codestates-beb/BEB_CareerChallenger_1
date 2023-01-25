@@ -79,13 +79,13 @@ const _draw = () => {
   const testAddress = [
     "0x6DE9c88ECbAa488C63A50b6A516feA6aa7c2F23A",
     "0xCDe2eF0345025e6A6a221B8a62cd5830B93636C7",
-    "0x2eCc77C489e0E3c24A2D53cabC852E20A4A4A88f",
+    "0x07ebD0917126C710E82B7c73db0C232f25F8605d",
     "0xD871b2086E0e45E603A9F7D6013Ec9E7E5a7eb93",
   ];
 
   testAddress.map((address) => {
-    winner.push(address)
-  })
+    winner.push(address);
+  });
 
   return winner;
 };
@@ -107,7 +107,7 @@ const airdrop = async (titleTypeBytes, merkleProof) => {
     gasPrice: await getGasPrice(),
   };
   const result = await contract.methods
-    .airdrop(titleTypeBytes,merkleProof)
+    .airdrop(titleTypeBytes, merkleProof)
     .send(transaction);
 
   return result;
@@ -140,5 +140,5 @@ module.exports = {
   merkleTreeRoot,
   merkleTreeProof,
   canClaim,
-  airdrop
+  airdrop,
 };
