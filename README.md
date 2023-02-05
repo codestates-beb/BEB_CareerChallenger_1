@@ -14,7 +14,7 @@
 | --- | --- | --- | --- | 
 | 강영아 | 프론트엔드 | kya034203@gmail.com | https://github.com/Ellie-kang |
 | 강석민(팀장) | 스마트컨트랙트 | rkdtjrals2@naver.com | https://github.com/smkang2 |
-| 최원혁 | 스마트컨트랙트 | | imelon279@gmail.com | https://github.com/imelon2 |
+| 최원혁 | 스마트컨트랙트 | imelon279@gmail.com | https://github.com/imelon2 |
 | 신승훈 | 백엔드, 데이터베이스 | sinsu19012@gmail.com | https://github.com/sinsu1004 |
 <br/>
 
