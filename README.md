@@ -1,6 +1,4 @@
-# 제목 없음
-
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%200a53a0da935c46aa8e2c89d27806c95f/Untitled.png)
+![Untitled](README/Untitled.png)
 
 ## **“세상에 없던 암표 없는 티켓팅 플랫폼”**
 <br/>
@@ -12,54 +10,12 @@
 
 해당 프로젝트는 2.5주 동안 진행되었으며, WEB2와 WEB3가 결합된 NFT 티켓팅 B2C 플랫폼입니다. 티켓을 NFT로 구현하여 Smart Contract로 높은 가격으로 재판매되는 잘못된 “암표”시장을 해결하기 위해 노력했습니다.
 
-<aside>
-🤴 **팀장 강석민**
-
----
-
-> **Email | rkdtjrals2@naver.com**
-> 
-
-> **Github |**  [https://github.com/](https://github.com/Ellie-kang)smkang2
-> 
-</aside>
-
-<aside>
-👩🏻 **팀원 강영아**
-
----
-
-> **Email | kya034203@gmail.com**
-> 
-
-> **Github |** [https://github.com/Ellie-kang](https://github.com/Ellie-kang)
-> 
-
-</aside>
-
-<aside>
-🧑🏻‍🦱 **팀원 신승훈**
-
----
-
-> **Email | sinsu19012@gmail.com**
-> 
-
-> **Github | [https://github.com/sinsu1004](https://github.com/sinsu1004)**
-> 
-</aside>
-
-<aside>
-👦🏻 **팀원 최원혁**
-
----
-
-> **Email | imelon279@gmail.com**
-> 
-
-> **Github | [https://github.com/imelon2](https://github.com/imelon2)**
-> 
-</aside>
+| 이름 | 역할 | 이메일 | Github |
+| --- | --- | --- | --- | 
+| 강영아 | 프론트엔드 | kya034203@gmail.com | https://github.com/Ellie-kang |
+| 강석민(팀장) | 스마트컨트랙트 | rkdtjrals2@naver.com | https://github.com/smkang2 |
+| 최원혁 | | https://github.com/imelon2 |
+| 신승훈 | 백엔드, 데이터베이스 | | https://github.com/sinsu1004 |
 <br/>
 
 > **NFTPARK 주요 기능**
@@ -74,7 +30,7 @@
 > **기술 스택**
 > 
 
-![Untitled](%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%200a53a0da935c46aa8e2c89d27806c95f/Untitled%201.png)
+![Untitled](README/Untitled 1.png)
 <br/>
 
 ## How To Play  **NFTPARK**
